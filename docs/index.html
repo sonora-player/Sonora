@@ -182,65 +182,25 @@
         display: block;
         width: 100%;
         height: auto;
-      }
-
-      .media.has-media img,
-      .media.has-media video {
         object-fit: contain;
         background: #0a0e14;
       }
 
-      .media-ph {
-        position: absolute;
-        inset: 0;
-        display: grid;
-        place-content: center;
-        gap: 6px;
-        padding: 24px;
-        text-align: center;
-        color: var(--soft);
-        font-size: 13px;
-        line-height: 1.45;
+      .media.media-empty {
+        aspect-ratio: 16 / 9.2;
         background:
-          linear-gradient(180deg, rgba(106, 168, 232, 0.06), transparent 55%),
-          repeating-linear-gradient(
-            -12deg,
-            transparent,
-            transparent 10px,
-            rgba(255, 255, 255, 0.015) 10px,
-            rgba(255, 255, 255, 0.015) 11px
-          );
+          linear-gradient(180deg, rgba(106, 168, 232, 0.05), transparent 55%),
+          #121820;
+        border-style: solid;
       }
 
-      .media-ph code {
-        font-family: var(--mono);
-        font-size: 12px;
-        color: var(--accent);
+      .media.media-empty::after {
+        content: none;
       }
 
       .hero-media {
         margin-top: 36px;
         box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
-      }
-
-      .hero-media:not(.has-media) {
-        aspect-ratio: 16 / 9.2;
-      }
-
-      .media.has-media img,
-      .media.has-media .site-shot {
-        display: block;
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        background: #0a0d12;
-      }
-
-      .site-shot:not(.is-loaded) {
-        min-height: 160px;
-        background:
-          linear-gradient(180deg, rgba(106, 168, 232, 0.06), transparent 55%),
-          #121820;
       }
 
       .strip {
@@ -524,7 +484,7 @@
       <div class="wrap">
         <nav class="nav">
           <a class="brand" href="#">
-            <img class="site-shot" data-shot="sonora-logo.png" alt="" width="28" height="28" />
+            <img src="assets/sonora-logo.png" alt="" width="28" height="28" />
             Sonora
           </a>
           <div class="nav-links">
@@ -550,10 +510,11 @@
             <a class="btn btn-ghost" href="#donate">Donate</a>
             <p class="note">Folder preview · meters · light editing in one window.</p>
           </div>
-          <figure class="media hero-media has-media">
+          <figure class="media hero-media">
             <img
-              class="site-shot"
-              data-shot="hero.png"
+              class="site-media"
+              src="https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/hero.png"
+              data-fallbacks="assets/hero.png|https://fastly.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/hero.png|assets/hero.jpg"
               alt="Sonora main window"
               width="1280"
               height="720"
@@ -600,8 +561,17 @@
                 <li>Cursor readouts for time and frequency</li>
               </ul>
             </div>
-            <figure class="media has-media">
-              <img class="site-shot" data-shot="wave.png" alt="Waveform and analyzers" width="960" height="540" loading="lazy" decoding="async" />
+            <figure class="media">
+              <img
+                class="site-media"
+                src="https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/wave.gif"
+                data-fallbacks="assets/wave.gif|https://fastly.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/wave.gif|https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/wave.png|assets/wave.png"
+                alt="Waveform and analyzers"
+                width="960"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
           </article>
 
@@ -618,8 +588,17 @@
                 <li>Refresh loudness for a selection from the file list</li>
               </ul>
             </div>
-            <figure class="media has-media">
-              <img class="site-shot" data-shot="meters.png" alt="Meters and loudness" width="960" height="540" loading="lazy" decoding="async" />
+            <figure class="media">
+              <img
+                class="site-media"
+                src="https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/meters.gif"
+                data-fallbacks="assets/meters.gif|https://fastly.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/meters.gif|https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/meters.png|assets/meters.png"
+                alt="Meters and loudness"
+                width="960"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
           </article>
 
@@ -636,8 +615,17 @@
                 <li>Multilingual UI and customizable hotkeys</li>
               </ul>
             </div>
-            <figure class="media has-media">
-              <img class="site-shot" data-shot="folder.png" alt="Folder and file list" width="960" height="540" loading="lazy" decoding="async" />
+            <figure class="media">
+              <img
+                class="site-media"
+                src="https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/folder.gif"
+                data-fallbacks="assets/folder.gif|https://fastly.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/folder.gif|https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/folder.png|assets/folder.png"
+                alt="Folder and file list"
+                width="960"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
           </article>
 
@@ -654,8 +642,17 @@
                 <li>CSV export of the current list columns</li>
               </ul>
             </div>
-            <figure class="media has-media">
-              <img class="site-shot" data-shot="edit.png" alt="Selection and export" width="960" height="540" loading="lazy" decoding="async" />
+            <figure class="media">
+              <img
+                class="site-media"
+                src="https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/edit.gif"
+                data-fallbacks="assets/edit.gif|https://fastly.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/edit.gif|https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/edit.png|assets/edit.png"
+                alt="Selection and export"
+                width="960"
+                height="540"
+                loading="lazy"
+                decoding="async"
+              />
             </figure>
           </article>
         </section>
@@ -777,34 +774,30 @@
         });
       }
 
-      // Prefer CDN stills (smaller PNGs) so mainland networks can load shots
-      // even when github.io / large GIFs time out.
-      const SHOT_BASES = [
-        "https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/",
-        "https://fastly.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/",
-        "https://gcore.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/",
-        "assets/",
-      ];
-
-      function mountShot(img) {
-        const file = img.getAttribute("data-shot");
-        if (!file) return;
+      // GIFs first (same-origin), then CDN GIF, then still PNG. On total failure:
+      // remove the image and leave a blank frame — never show file-path placeholders.
+      function bindMediaFallback(img) {
+        const list = (img.getAttribute("data-fallbacks") || "")
+          .split("|")
+          .map((s) => s.trim())
+          .filter(Boolean);
         let i = 0;
-        const tryNext = () => {
-          if (i >= SHOT_BASES.length) return;
-          const url = SHOT_BASES[i++] + file;
-          const probe = new Image();
-          probe.onload = () => {
-            img.src = url;
-            img.classList.add("is-loaded");
-          };
-          probe.onerror = tryNext;
-          probe.src = url;
+        const failSilent = () => {
+          const fig = img.closest("figure.media");
+          img.remove();
+          if (fig) fig.classList.add("media-empty");
         };
-        tryNext();
+        img.addEventListener("error", function onErr() {
+          if (i < list.length) {
+            img.src = list[i++];
+            return;
+          }
+          img.removeEventListener("error", onErr);
+          failSilent();
+        });
       }
 
-      document.querySelectorAll("img.site-shot[data-shot]").forEach(mountShot);
+      document.querySelectorAll("img.site-media").forEach(bindMediaFallback);
 
       async function loadRelease() {
         let version = "Latest release";
