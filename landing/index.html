@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sonora — Fast audition &amp; editing player</title>
+    <meta
+      name="description"
+      content="Sonora is a fast audition and editing player with loudness metering for audio editors and sound designers."
+    />
+    <link rel="icon" href="assets/sonora-logo.png" />
+    <style>
+      :root {
+        --page: #0c1016;
+        --ink: #e8edf4;
+        --muted: rgba(232, 237, 244, 0.58);
+        --soft: rgba(232, 237, 244, 0.42);
+        --line: rgba(232, 237, 244, 0.12);
+        --accent: #5a9be0;
+        --accent-strong: #3d7fd0;
+        --accent-ink: #0c1016;
+        --panel: rgba(255, 255, 255, 0.04);
+        --radius: 14px;
+        --font-sans: "Segoe UI Variable", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+        --font-mono: "Cascadia Mono", Consolas, ui-monospace, monospace;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--page);
+        color: var(--ink);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .site-shell {
+        min-height: 100dvh;
+        background:
+          linear-gradient(180deg, rgba(90, 155, 224, 0.1), transparent 420px),
+          radial-gradient(circle at 78% -10%, rgba(90, 155, 224, 0.18), transparent 36%),
+          radial-gradient(circle at 10% 12%, rgba(90, 212, 160, 0.07), transparent 26%),
+          var(--page);
+      }
+
+      .nav,
+      .section,
+      .footer,
+      .download-inner {
+        width: min(100% - 48px, 1120px);
+        margin: 0 auto;
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 76px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 15px;
+        font-weight: 650;
+      }
+
+      .brand img {
+        width: 30px;
+        height: 30px;
+        display: block;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+        color: var(--soft);
+        font-size: 13px;
+        font-weight: 560;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      .hero {
+        padding: 56px 0 0;
+      }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--accent);
+        font-size: 14px;
+        font-weight: 560;
+      }
+
+      .hero-title {
+        max-width: 920px;
+        margin: 0;
+        font-size: clamp(40px, 5vw, 64px);
+        line-height: 1.05;
+        letter-spacing: -0.035em;
+        font-weight: 720;
+      }
+
+      .hero-subtitle {
+        max-width: 720px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(17px, 1.8vw, 22px);
+        line-height: 1.4;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        padding: 0 20px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 660;
+        transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+      }
+
+      .btn:active {
+        transform: translateY(1px);
+      }
+
+      .btn-primary {
+        background: var(--accent);
+        color: var(--accent-ink);
+      }
+
+      .btn-primary:hover {
+        background: #7eb0e8;
+      }
+
+      .btn-secondary {
+        border-color: var(--line);
+        background: var(--panel);
+      }
+
+      .btn-secondary:hover {
+        border-color: rgba(90, 155, 224, 0.45);
+        background: rgba(90, 155, 224, 0.1);
+      }
+
+      .hero-note {
+        flex-basis: 100%;
+        margin: 4px 0 0;
+        color: var(--soft);
+        font-size: 13px;
+      }
+
+      .shot {
+        overflow: hidden;
+        margin: 0;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+          #121820;
+        aspect-ratio: 16 / 9;
+        display: grid;
+        place-items: center;
+        color: var(--soft);
+        font-size: 14px;
+      }
+
+      .shot.has-image img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-shot {
+        width: min(100%, 1120px);
+        margin: 44px auto 0;
+      }
+
+      .principles {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+        padding: 48px 0 28px;
+      }
+
+      .principle {
+        padding: 0 24px;
+        border-left: 1px solid var(--line);
+      }
+
+      .principle:first-child {
+        padding-left: 0;
+        border-left: 0;
+      }
+
+      .principle h2 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: -0.02em;
+      }
+
+      .principle p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.5;
+        max-width: 320px;
+      }
+
+      .features {
+        padding: 10px 0 20px;
+      }
+
+      .feature {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
+        gap: 40px;
+        align-items: center;
+        padding: 44px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .feature h2 {
+        margin: 0;
+        font-size: clamp(28px, 3.2vw, 42px);
+        line-height: 1.08;
+        letter-spacing: -0.03em;
+      }
+
+      .feature p {
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.5;
+        max-width: 460px;
+      }
+
+      .feature-points {
+        list-style: none;
+        margin: 22px 0 0;
+        padding: 0;
+        border-top: 1px solid rgba(232, 237, 244, 0.08);
+        max-width: 480px;
+      }
+
+      .feature-points li {
+        position: relative;
+        padding: 11px 0 11px 16px;
+        border-bottom: 1px solid rgba(232, 237, 244, 0.08);
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.45;
+      }
+
+      .feature-points li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1.35em;
+        width: 5px;
+        height: 5px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .feature-visual .shot {
+        width: 100%;
+      }
+
+      .donate-block,
+      .pro-block {
+        padding: 36px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .donate-block h2,
+      .pro-block h2 {
+        margin: 0;
+        font-size: clamp(28px, 3vw, 40px);
+        letter-spacing: -0.03em;
+      }
+
+      .donate-block p,
+      .pro-block p {
+        max-width: 560px;
+        margin: 14px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.5;
+      }
+
+      .pro-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 28px;
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.45;
+      }
+
+      .pro-list li {
+        position: relative;
+        padding-left: 14px;
+      }
+
+      .pro-list li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0.55em;
+        width: 5px;
+        height: 5px;
+        border-radius: 999px;
+        background: var(--accent);
+      }
+
+      .download-section {
+        margin-top: 28px;
+        padding: 64px 0 40px;
+        background: #080b10;
+      }
+
+      .download-header h2 {
+        margin: 0 0 24px;
+        font-size: clamp(32px, 4vw, 52px);
+        letter-spacing: -0.035em;
+      }
+
+      .platform-card {
+        padding: 22px 24px;
+        border: 1px solid rgba(90, 155, 224, 0.35);
+        border-radius: var(--radius);
+        background: rgba(90, 155, 224, 0.08);
+        max-width: 520px;
+      }
+
+      .platform-name {
+        font-size: 22px;
+        font-weight: 680;
+      }
+
+      .platform-os-tag {
+        margin-top: 4px;
+        color: var(--soft);
+        font-family: var(--font-mono);
+        font-size: 12px;
+      }
+
+      .platform-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 18px 0 12px;
+      }
+
+      .install-warning {
+        margin: 0;
+        padding-top: 12px;
+        border-top: 1px solid rgba(232, 237, 244, 0.08);
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .footer {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 18px;
+        padding: 22px 0 28px;
+        color: var(--soft);
+        font-size: 13px;
+      }
+
+      .footer a:hover {
+        color: var(--ink);
+      }
+
+      .release-note {
+        margin-right: auto;
+      }
+
+      @media (max-width: 900px) {
+        .nav,
+        .section,
+        .footer,
+        .download-inner {
+          width: min(100% - 28px, 1120px);
+        }
+
+        .principles,
+        .feature,
+        .pro-list {
+          grid-template-columns: 1fr;
+        }
+
+        .principle,
+        .principle:first-child {
+          padding: 18px 0;
+          border-left: 0;
+          border-top: 1px solid var(--line);
+        }
+
+        .nav-links a:not(.nav-download) {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-shell">
+      <nav class="nav">
+        <a class="brand" href="#">
+          <img src="assets/sonora-logo.png" alt="" width="30" height="30" />
+          Sonora
+        </a>
+        <div class="nav-links">
+          <a href="#features">Features</a>
+          <a href="#pro">Pro</a>
+          <a href="#donate">Donate</a>
+          <a id="nav-github" href="#">GitHub</a>
+          <a class="nav-download" href="#download">Download</a>
+        </div>
+      </nav>
+
+      <header class="section hero">
+        <p class="eyebrow">Windows · Free to use</p>
+        <h1 class="hero-title">Fast audition and editing with loudness metering.</h1>
+        <p class="hero-subtitle">
+          Built to help audio editors, sound designers, and anyone who works with
+          professional audio move quicker from hearing a file to shaping it.
+        </p>
+        <div class="hero-actions" id="hero-actions">
+          <a class="btn btn-primary" href="#download">Download for Windows</a>
+          <a class="btn btn-secondary" href="#donate">Donate</a>
+          <p class="hero-note">Folder-based preview · meters · light editing in one window.</p>
+        </div>
+        <figure class="shot hero-shot" id="hero-shot">
+          <span>Screenshot placeholder — drop UI captures into assets/</span>
+        </figure>
+      </header>
+
+      <section class="section principles">
+        <div class="principle">
+          <h2>Hear fast</h2>
+          <p>Audition samples and stems by folder, with transport that stays out of the way.</p>
+        </div>
+        <div class="principle">
+          <h2>See clearly</h2>
+          <p>Level, loudness, waveform and spectrum stay visible while you listen.</p>
+        </div>
+        <div class="principle">
+          <h2>Shape lightly</h2>
+          <p>Selection, cues, convert, rename and export without leaving the player.</p>
+        </div>
+      </section>
+
+      <section class="section features" id="features">
+        <article class="feature">
+          <div>
+            <h2>Watch the signal while you audition</h2>
+            <p>
+              Peak, RMS, K-system style meters and loudness readouts sit next to
+              waveform and analyzer views so you can judge files in context.
+            </p>
+            <ul class="feature-points">
+              <li>Waveform, spectrogram, bars, frequency and waterfall views</li>
+              <li>Integrated loudness analysis for files you care about</li>
+              <li>Cursor readouts for time and frequency when you need them</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            <figure class="shot"><span>Meters / waveform screenshot</span></figure>
+          </div>
+        </article>
+
+        <article class="feature">
+          <div>
+            <h2>Stay in the folder workflow</h2>
+            <p>
+              Open a folder, filter the list, keep position when switching files,
+              and handle common file jobs without bouncing to Explorer.
+            </p>
+            <ul class="feature-points">
+              <li>Browser tree, details panel, multilingual UI</li>
+              <li>Batch rename, convert / export, CSV list export</li>
+              <li>A-B loop, cues, selection tools for quick shaping</li>
+            </ul>
+          </div>
+          <div class="feature-visual">
+            <figure class="shot"><span>File list screenshot</span></figure>
+          </div>
+        </article>
+      </section>
+
+      <section class="section pro-block" id="pro">
+        <h2>Coming in Sonora Pro</h2>
+        <p>
+          Additional capabilities on the roadmap — no schedule promised. See the
+          full list in the repository.
+        </p>
+        <ul class="pro-list">
+          <li>Batch loudness report CSV export</li>
+          <li>CLI for scripting and unattended analysis</li>
+          <li>macOS and Linux</li>
+          <li>Audio library database (scan / index)</li>
+          <li>Loop auto-editing with fades</li>
+          <li>ASIO, selection export, pitch, recording, batch targets</li>
+        </ul>
+        <div class="hero-actions" style="margin-top: 22px">
+          <a class="btn btn-secondary" id="roadmap-link" href="#">Read roadmap</a>
+        </div>
+      </section>
+
+      <section class="section donate-block" id="donate">
+        <h2>Support Sonora Free</h2>
+        <p>
+          Sonora Free is free to use. If it saves you time, a voluntary donation
+          helps keep maintenance going. Donations are appreciation — not a
+          purchase of Sonora Pro.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" id="donate-btn" href="#">Donate</a>
+        </div>
+      </section>
+
+      <section class="download-section" id="download">
+        <div class="download-inner">
+          <div class="download-header">
+            <h2>Download Sonora</h2>
+          </div>
+          <div class="platform-card" id="platform-card">
+            <div class="platform-name">Windows</div>
+            <div class="platform-os-tag">10 / 11 · x64</div>
+            <div class="platform-actions">
+              <a class="btn btn-primary" id="dl-installer" href="#">View Releases</a>
+              <a class="btn btn-secondary" id="dl-portable" href="#">Portable</a>
+            </div>
+            <p class="install-warning">
+              If SmartScreen appears, choose <strong>More info</strong>, then
+              <strong>Run anyway</strong>. Official builds are unsigned for now.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span class="release-note" id="footer-version">Latest release</span>
+        <a id="footer-github" href="#">GitHub</a>
+        <a id="footer-releases" href="#">Releases</a>
+        <a href="#donate">Donate</a>
+      </footer>
+    </div>
+
+    <script>
+      // Fill these after the GitHub repo exists.
+      const CONFIG = {
+        repo: "OWNER/Sonora",
+        donateUrl: "", // e.g. https://afdian.com/a/... or Buy Me a Coffee
+      };
+
+      const RELEASES_URL = `https://github.com/${CONFIG.repo}/releases`;
+      const REPO_URL = `https://github.com/${CONFIG.repo}`;
+      const ROADMAP_URL = `https://github.com/${CONFIG.repo}/blob/main/ROADMAP.md`;
+
+      document.getElementById("nav-github").href = REPO_URL;
+      document.getElementById("footer-github").href = REPO_URL;
+      document.getElementById("footer-releases").href = RELEASES_URL;
+      document.getElementById("roadmap-link").href = ROADMAP_URL;
+      document.getElementById("dl-installer").href = RELEASES_URL;
+      document.getElementById("dl-portable").href = RELEASES_URL;
+
+      const donateBtn = document.getElementById("donate-btn");
+      if (CONFIG.donateUrl) {
+        donateBtn.href = CONFIG.donateUrl;
+        donateBtn.target = "_blank";
+        donateBtn.rel = "noopener noreferrer";
+      } else {
+        donateBtn.addEventListener("click", (e) => {
+          e.preventDefault();
+          alert("Donate link not set yet. Add CONFIG.donateUrl in landing/index.html.");
+        });
+      }
+
+      async function loadRelease() {
+        let version = "Latest release";
+        let installer = RELEASES_URL;
+        let portable = RELEASES_URL;
+        try {
+          const res = await fetch(`https://api.github.com/repos/${CONFIG.repo}/releases/latest`);
+          if (res.ok) {
+            const data = await res.json();
+            version = data.tag_name || version;
+            const assets = data.assets || [];
+            const setup = assets.find(
+              (a) => /setup\.exe$/i.test(a.name) || (/Sonora_.*\.exe$/i.test(a.name) && !/portable/i.test(a.name)),
+            );
+            const port = assets.find(
+              (a) => /portable/i.test(a.name) || /^sonora\.exe$/i.test(a.name),
+            );
+            if (setup) {
+              installer = setup.browser_download_url;
+              document.getElementById("dl-installer").textContent = "Download Installer";
+            }
+            if (port) {
+              portable = port.browser_download_url;
+              document.getElementById("dl-portable").textContent = "Download Portable";
+            }
+          }
+        } catch (_) {
+          /* keep fallbacks */
+        }
+        document.getElementById("footer-version").textContent = version;
+        document.getElementById("dl-installer").href = installer;
+        document.getElementById("dl-portable").href = portable;
+        document.getElementById("hero-actions").innerHTML = `
+          <a class="btn btn-primary" href="${installer}">Download for Windows</a>
+          <a class="btn btn-secondary" href="#donate">Donate</a>
+          <p class="hero-note">Folder-based preview · meters · light editing in one window.</p>
+        `;
+      }
+
+      loadRelease();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+node_modules/
+.DS_Store
+Thumbs.db
+*.exe
+*.msi
+*.dmg
+dist/
+.vscode/
+.idea/
