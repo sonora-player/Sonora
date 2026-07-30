@@ -36,9 +36,14 @@ git push -u origin main
 3. 上传 `dist-app` 里的 `Sonora_0.9.2_x64-setup.exe` 和 `Sonora-0.9.2-portable.exe`
 4. Publish release
 
-## 捐助链接
+## 支持开发（Support Sonora）
 
-开通后填入：
+开通后确认：
 
-- `docs/index.html` → `CONFIG.donateUrl`
-- 应用 `src/links.ts` → `donate`
+- 官网：`docs/index.html` → Support 区块（Ko-fi / 爱发电二级选择）
+- 应用：`src/links.ts` → `donate` 指向官网 `#support`
+- GitHub：`.github/FUNDING.yml` + README「Support Sonora」
+
+免责声明（请保留）：
+
+> 赞助完全自愿，不代表购买软件所有权、优先技术支持或特定功能承诺。

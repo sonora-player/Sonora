@@ -135,8 +135,12 @@
         padding: 0 18px;
         border-radius: 999px;
         border: 1px solid transparent;
+        font: inherit;
         font-size: 14px;
         font-weight: 650;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
       }
 
       .btn-primary {
@@ -367,6 +371,91 @@
         line-height: 1.5;
       }
 
+      .donate-tagline {
+        margin: 10px 0 0;
+        color: var(--ink);
+        font-size: 18px;
+        font-weight: 650;
+        letter-spacing: -0.02em;
+      }
+
+      .donate-tagline-zh {
+        margin: 4px 0 0;
+        color: var(--soft);
+        font-size: 14px;
+      }
+
+      .donate-disclaimer {
+        margin: 18px 0 0;
+        max-width: 40rem;
+        color: var(--soft);
+        font-size: 12.5px;
+        line-height: 1.55;
+      }
+
+      .support-panel {
+        display: none;
+        margin-top: 18px;
+        max-width: 36rem;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .support-panel.is-open {
+        display: block;
+      }
+
+      .support-panel h3 {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 650;
+        letter-spacing: -0.01em;
+      }
+
+      .support-choices {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
+
+      .support-choice {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(11, 15, 20, 0.55);
+        text-decoration: none;
+        color: inherit;
+        transition: border-color 0.15s ease, background 0.15s ease;
+      }
+
+      .support-choice:hover {
+        border-color: rgba(106, 168, 232, 0.5);
+        background: rgba(106, 168, 232, 0.08);
+      }
+
+      .support-choice strong {
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .support-choice span {
+        color: var(--soft);
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      @media (max-width: 560px) {
+        .support-choices {
+          grid-template-columns: 1fr;
+        }
+      }
+
       .pro-list {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -488,7 +577,7 @@
             <a href="#features">Features</a>
             <a href="guide/">Docs</a>
             <a href="#pro">Pro</a>
-            <a href="#donate">Donate</a>
+            <a href="#support">Support</a>
             <a id="nav-github" href="#">GitHub</a>
             <a class="nav-dl" href="#download">Download</a>
           </div>
@@ -503,7 +592,7 @@
           </p>
           <div class="actions" id="hero-actions">
             <a class="btn btn-primary" href="#download">Download for Windows</a>
-            <a class="btn btn-ghost" href="#donate">Donate</a>
+            <a class="btn btn-ghost" href="#support">Support Sonora</a>
             <p class="note">Folder preview · meters · light editing in one window.</p>
           </div>
           <figure class="media hero-media">
@@ -702,15 +791,54 @@
           </div>
         </section>
 
-        <section class="donate" id="donate">
-          <h2>Support Sonora Free</h2>
+        <section class="donate" id="support">
+          <h2>Support Sonora</h2>
+          <p class="donate-tagline">Sponsor the project</p>
+          <p class="donate-tagline-zh">支持 Sonora 开发</p>
           <p>
-            Free to use. If it saves you time, a voluntary donation helps
-            maintenance. Donations are appreciation — not a purchase of Pro.
+            Sonora Free is free to use. If it helps your work, voluntary support
+            keeps development and maintenance going.
           </p>
           <div class="actions">
-            <a class="btn btn-primary" id="donate-btn" href="#">Donate</a>
+            <button type="button" class="btn btn-primary" id="support-open" aria-expanded="false" aria-controls="support-panel">
+              Support Sonora
+            </button>
           </div>
+          <div class="support-panel" id="support-panel" hidden>
+            <h3>Choose a support channel</h3>
+            <div class="support-choices">
+              <a
+                class="support-choice"
+                href="https://ko-fi.com/sonoraaudio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>Ko-fi</strong>
+                <span>International · card &amp; more</span>
+              </a>
+              <a
+                class="support-choice"
+                href="https://afdian.com/a/sonoraaudio"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>爱发电</strong>
+                <span>中国大陆</span>
+              </a>
+            </div>
+            <p class="donate-disclaimer">
+              Support is entirely voluntary and does not purchase software
+              ownership, priority technical support, or any specific feature
+              commitment.<br />
+              赞助完全自愿，不代表购买软件所有权、优先技术支持或特定功能承诺。
+            </p>
+          </div>
+          <p class="donate-disclaimer" id="support-disclaimer-inline">
+            Support is entirely voluntary and does not purchase software
+            ownership, priority technical support, or any specific feature
+            commitment.<br />
+            赞助完全自愿，不代表购买软件所有权、优先技术支持或特定功能承诺。
+          </p>
         </section>
       </div>
 
@@ -737,14 +865,17 @@
         <a id="footer-github" href="#">GitHub</a>
         <a href="guide/">Docs</a>
         <a id="footer-releases" href="#">Releases</a>
-        <a href="#donate">Donate</a>
+        <a href="#support">Support</a>
       </footer>
     </div>
 
     <script>
       const CONFIG = {
-        repo: "JANFNASY/Sonora",
-        donateUrl: "",
+        repo: "sonora-player/Sonora",
+        support: {
+          kofi: "https://ko-fi.com/sonoraaudio",
+          afdian: "https://afdian.com/a/sonoraaudio",
+        },
       };
 
       const RELEASES_URL = `https://github.com/${CONFIG.repo}/releases`;
@@ -758,16 +889,29 @@
       document.getElementById("dl-installer").href = RELEASES_URL;
       document.getElementById("dl-portable").href = RELEASES_URL;
 
-      const donateBtn = document.getElementById("donate-btn");
-      if (CONFIG.donateUrl) {
-        donateBtn.href = CONFIG.donateUrl;
-        donateBtn.target = "_blank";
-        donateBtn.rel = "noopener noreferrer";
-      } else {
-        donateBtn.addEventListener("click", (e) => {
-          e.preventDefault();
-          alert("Donate link not set yet. Add CONFIG.donateUrl in docs/index.html.");
-        });
+      const supportOpen = document.getElementById("support-open");
+      const supportPanel = document.getElementById("support-panel");
+      const supportDisclaimerInline = document.getElementById("support-disclaimer-inline");
+      supportOpen.addEventListener("click", () => {
+        const open = !supportPanel.classList.contains("is-open");
+        supportPanel.classList.toggle("is-open", open);
+        supportPanel.hidden = !open;
+        supportOpen.setAttribute("aria-expanded", open ? "true" : "false");
+        if (supportDisclaimerInline) {
+          supportDisclaimerInline.hidden = open;
+        }
+        if (open) supportPanel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+
+      // Keep #donate bookmarks working; open panel when arriving at #support.
+      if (location.hash === "#donate") {
+        history.replaceState(null, "", "#support");
+      }
+      if (location.hash === "#support") {
+        supportPanel.classList.add("is-open");
+        supportPanel.hidden = false;
+        supportOpen.setAttribute("aria-expanded", "true");
+        if (supportDisclaimerInline) supportDisclaimerInline.hidden = true;
       }
 
       // GIFs first (same-origin), then CDN GIF, then still PNG. On total failure:
@@ -826,7 +970,7 @@
         document.getElementById("dl-portable").href = portable;
         document.getElementById("hero-actions").innerHTML = `
           <a class="btn btn-primary" href="${installer}">Download for Windows</a>
-          <a class="btn btn-ghost" href="#donate">Donate</a>
+          <a class="btn btn-ghost" href="#support">Support Sonora</a>
           <p class="note">Folder preview · meters · light editing in one window.</p>
         `;
       }

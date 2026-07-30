@@ -1,0 +1,6 @@
+# Displayed on the GitHub repository sidebar as “Sponsor this project”.
+# Wording on the product site uses “Support Sonora” to avoid purchase ambiguity.
+ko_fi: sonoraaudio
+custom:
+  - "https://afdian.com/a/sonoraaudio"
+  - "https://sonora-player.github.io/Sonora/#support"

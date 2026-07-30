@@ -5,7 +5,7 @@
 Sonora helps audio editors, sound designers, and anyone who works with
 professional audio move quicker from hearing a file to shaping it.
 
-[Website](https://sonora-player.github.io/Sonora/) · [Docs](https://sonora-player.github.io/Sonora/guide/) · [Download](https://github.com/sonora-player/Sonora/releases) · [Roadmap](ROADMAP.md) · [Donate](#donate)
+[Website](https://sonora-player.github.io/Sonora/) · [Docs](https://sonora-player.github.io/Sonora/guide/) · [Download](https://github.com/sonora-player/Sonora/releases) · [Roadmap](ROADMAP.md) · [Support Sonora](#support-sonora)
 
 ---
 
@@ -24,15 +24,28 @@ Visit **[Releases](https://github.com/sonora-player/Sonora/releases)** for the l
 | Package | Notes |
 | --- | --- |
 | `Sonora_*_x64-setup.exe` | NSIS installer (file associations) |
-| `sonora.exe` / portable build | Run without installing |
+| `Sonora-*-portable.exe` | Run without installing |
 
 Windows may show SmartScreen for unsigned builds: **More info → Run anyway**.
 
-## Donate
+## Support Sonora
+
+**Sponsor the project** · **支持 Sonora 开发**
 
 Sonora Free is free to use. If it helps your work, voluntary support keeps
-maintenance going. See the Donate section on the website (link configured after
-you set up 爱发电 / Buy Me a Coffee / GitHub Sponsors).
+development and maintenance going.
+
+| Channel | Region | Link |
+| --- | --- | --- |
+| Ko-fi | International | [ko-fi.com/sonoraaudio](https://ko-fi.com/sonoraaudio) |
+| 爱发电 | 中国大陆 | [afdian.com/a/sonoraaudio](https://afdian.com/a/sonoraaudio) |
+
+Website: [Support Sonora](https://sonora-player.github.io/Sonora/#support)
+
+> Support is entirely voluntary and does not purchase software ownership,
+> priority technical support, or any specific feature commitment.
+>
+> 赞助完全自愿，不代表购买软件所有权、优先技术支持或特定功能承诺。
 
 ## Sonora Pro
 

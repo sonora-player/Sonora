@@ -14,7 +14,7 @@ describe commercial terms.
 - Level meters and loudness analysis
 - File management, batch rename, convert / export, list CSV
 - Multilingual UI and customizable hotkeys
-- Voluntary donations support ongoing Free maintenance
+- Voluntary support helps ongoing Free maintenance (not a purchase)
 
 ## Sonora Pro (planned capabilities)
 
