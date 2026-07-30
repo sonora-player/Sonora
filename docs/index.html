@@ -171,6 +171,9 @@
         border: 1px solid var(--card-edge);
         border-radius: 12px;
         background: var(--card);
+      }
+
+      .media:not(.has-media) {
         aspect-ratio: 16 / 9;
       }
 
@@ -178,8 +181,13 @@
       .media video {
         display: block;
         width: 100%;
-        height: 100%;
-        object-fit: cover;
+        height: auto;
+      }
+
+      .media.has-media img,
+      .media.has-media video {
+        object-fit: contain;
+        background: #0a0e14;
       }
 
       .media-ph {
@@ -212,8 +220,18 @@
 
       .hero-media {
         margin-top: 36px;
-        aspect-ratio: 16 / 9.2;
         box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+      }
+
+      .hero-media:not(.has-media) {
+        aspect-ratio: 16 / 9.2;
+      }
+
+      .hero-media.has-media img {
+        object-fit: cover;
+        aspect-ratio: 16 / 9.2;
+        height: auto;
+        max-height: none;
       }
 
       .strip {
@@ -730,7 +748,7 @@
 
     <script>
       const CONFIG = {
-        repo: "sonora-player/Sonora",
+        repo: "JANFNASY/Sonora",
         donateUrl: "",
       };
 
