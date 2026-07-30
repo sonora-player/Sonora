@@ -44,7 +44,7 @@ git commit -m "Add landing media"
 git push
 ```
 
-刷新 https://janfnasy.github.io/Sonora/ 即可看到图。
+刷新 https://sonora-player.github.io/Sonora/ 即可看到图。
 
 ## 不必一次做齐
 
