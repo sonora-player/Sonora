@@ -26,7 +26,7 @@ git push -u origin main
 
 1. 打开 https://github.com/JANFNASY/Sonora/settings/pages
 2. Source → **Deploy from a branch**
-3. Branch：`main`，Folder：`/landing` → Save
+3. Branch：`main`，Folder：选 **`/docs`**（GitHub 只支持 root 或 docs，不要找 /landing）→ Save
 4. 几分钟后打开：https://janfnasy.github.io/Sonora/
 
 ## 发布安装包（第四步）
@@ -40,5 +40,5 @@ git push -u origin main
 
 开通后填入：
 
-- `landing/index.html` → `CONFIG.donateUrl`
+- `docs/index.html` → `CONFIG.donateUrl`
 - 应用 `src/links.ts` → `donate`
