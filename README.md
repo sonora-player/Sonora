@@ -5,7 +5,7 @@
 Sonora helps audio editors, sound designers, and anyone who works with
 professional audio move quicker from hearing a file to shaping it.
 
-[Website](https://janfnasy.github.io/Sonora/) · [Download](https://github.com/JANFNASY/Sonora/releases) · [Roadmap](ROADMAP.md) · [Donate](#donate)
+[Website](https://janfnasy.github.io/Sonora/) · [Docs](https://janfnasy.github.io/Sonora/guide/) · [Download](https://github.com/JANFNASY/Sonora/releases) · [Roadmap](ROADMAP.md) · [Donate](#donate)
 
 ---
 

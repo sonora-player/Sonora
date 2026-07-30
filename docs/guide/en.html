@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sonora Docs — User Manual</title>
+    <meta
+      name="description"
+      content="Sonora Free user manual: install, UI, playback, loudness, selection, and batch tools."
+    />
+    <link rel="icon" href="../assets/sonora-logo.png" />
+    <link rel="stylesheet" href="docs.css" />
+  </head>
+  <body>
+    <div class="docs">
+      <aside class="side">
+        <a class="side-brand" href="../index.html">
+          <img src="../assets/sonora-logo.png" alt="" width="22" height="22" />
+          Sonora Docs
+        </a>
+        <p class="side-meta">Free · Windows · v0.9.1</p>
+        <nav class="toc">
+          <a href="#intro">Overview</a>
+          <a href="#install">Install</a>
+          <a href="#ui">Interface</a>
+          <a href="#browse">Browse</a>
+          <a href="#playback">Playback</a>
+          <a href="#viz">Visualizations</a>
+          <a href="#meters">Meters &amp; loudness</a>
+          <a href="#edit">Selection · Cue · A-B</a>
+          <a href="#files">Files &amp; batch</a>
+          <a href="#prefs">Preferences</a>
+          <a href="#keys">Shortcuts</a>
+          <a href="#faq">FAQ</a>
+          <a href="#pro">Sonora Pro</a>
+        </nav>
+        <div class="side-links">
+          <a href="../index.html">Website</a>
+          <a href="index.html">中文</a>
+          <a href="https://github.com/JANFNASY/Sonora/releases">Download</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="page-head">
+          <p class="eyebrow">User Manual</p>
+          <h1>Sonora documentation</h1>
+          <p class="lede">
+            Sonora is a fast audition and editing player with loudness metering —
+            helping audio editors, sound designers, and anyone who works with
+            professional audio move quicker from hearing a file to shaping it.
+          </p>
+        </header>
+
+        <section id="intro">
+          <h2>Overview</h2>
+          <p>
+            Work by <strong>folder</strong>, not a mandatory library. Open a
+            directory, audition samples or stems, watch waveform / spectrum /
+            level / loudness, and do light exports or file tidy-ups in one window.
+          </p>
+          <ul>
+            <li>Public builds are <strong>Sonora Free</strong> for Windows x64</li>
+            <li>Audio and analysis stay local</li>
+            <li>Built as a productivity player — not a full DAW or asset-library suite</li>
+          </ul>
+        </section>
+
+        <section id="install">
+          <h2>Install &amp; launch</h2>
+          <h3>Installer</h3>
+          <p>
+            Download <code>Sonora_*_x64-setup.exe</code> from
+            <a href="https://github.com/JANFNASY/Sonora/releases">Releases</a>.
+            The installer can register common audio file associations.
+          </p>
+          <h3>Portable</h3>
+          <p>Run <code>Sonora_*_portable.exe</code> without installing.</p>
+          <h3>SmartScreen</h3>
+          <p>
+            Builds are not code-signed yet. If Windows blocks the app, choose
+            <strong>More info</strong> → <strong>Run anyway</strong>.
+          </p>
+          <h3>Ways to open</h3>
+          <table>
+            <thead>
+              <tr><th>Action</th><th>Result</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Double-click an associated audio file</td><td>Open its folder and play</td></tr>
+              <tr><td>Double-click while Sonora is running</td><td>Single instance focuses and switches file</td></tr>
+              <tr><td>Drop a file</td><td>Enter its folder and play</td></tr>
+              <tr><td>Drop a folder</td><td>Load that folder’s list</td></tr>
+              <tr><td>File → Open Folder…</td><td>Pick a folder from a dialog</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="ui">
+          <h2>Interface</h2>
+          <ul>
+            <li><strong>Browser</strong> (F4): drives, places, folder tree</li>
+            <li><strong>File list</strong>: filterable/sortable rows with optional loudness columns</li>
+            <li><strong>Details</strong> (Alt+Enter): metadata and loudness detail</li>
+            <li><strong>Visualization</strong> (F12): waveform and analyzer modes</li>
+            <li><strong>Status bar</strong>: version, SCM/DCM, backend, Preferences</li>
+          </ul>
+        </section>
+
+        <section id="browse">
+          <h2>Browse folders</h2>
+          <ul>
+            <li>Parent folder and folder history on the toolbar</li>
+            <li>Locate current file with Ctrl+L</li>
+            <li>Filter box searches names in the current folder</li>
+            <li>SCM plays on single click; DCM requires double-click</li>
+          </ul>
+        </section>
+
+        <section id="playback">
+          <h2>Playback</h2>
+          <p>
+            Transport: previous / play-pause / stop / next. Space toggles
+            playback. Arrow keys nudge position and volume.
+          </p>
+          <ul>
+            <li>Sequential / Shuffle</li>
+            <li>Loop One</li>
+            <li>Stop after current</li>
+            <li>Keep Position when switching files</li>
+            <li>Dim / Mono / Downmix / Mute / Volume presets (right-click volume)</li>
+          </ul>
+        </section>
+
+        <section id="viz">
+          <h2>Visualizations</h2>
+          <p>
+            Cycle with the toolbar button or F12; right-click to pick a mode:
+            Waveform, Spectrogram (Ctrl+wheel zoom), Waterfall, log/lin analyzers,
+            Bars, Oscilloscope. Optional cursor readouts live under Interface preferences.
+          </p>
+        </section>
+
+        <section id="meters">
+          <h2>Meters &amp; loudness</h2>
+          <ul>
+            <li>Output meter cycles Peak / RMS / K-14 / VU</li>
+            <li>Phase / balance modules can be shown or hidden</li>
+            <li>File loudness (LUFS / LRA / True Peak) appears after analysis</li>
+            <li>Context menu → Refresh Loudness re-analyzes the selection</li>
+          </ul>
+        </section>
+
+        <section id="edit">
+          <h2>Selection · Cue · A-B</h2>
+          <ul>
+            <li>Drag on the waveform to select; loop, copy to A-B, or export</li>
+            <li>Export formats include WAV, float WAV, MP3, OGG, AAC with gain/fades</li>
+            <li>Add cues from the toolbar; jump between them</li>
+            <li>Set A/B at the playhead and enable A-B Loop</li>
+          </ul>
+        </section>
+
+        <section id="files">
+          <h2>Files &amp; batch tools</h2>
+          <ul>
+            <li>Cut / copy / paste, rename, delete to Recycle Bin, Show in Explorer</li>
+            <li>Batch Rename with preview and undo</li>
+            <li>Export / Convert for multi-file transcode</li>
+            <li>Export CSV for the current list fields</li>
+          </ul>
+        </section>
+
+        <section id="prefs">
+          <h2>Preferences (Ctrl+P)</h2>
+          <ul>
+            <li><strong>Sound</strong>: device, sample rate, channels, exclusive mode; ASIO reserved for Pro direction</li>
+            <li><strong>Interface</strong>: theme, density, modules, cursor readouts</li>
+            <li><strong>Hotkeys</strong>: view and customize accelerators</li>
+          </ul>
+          <p>Settings stay on the local machine.</p>
+        </section>
+
+        <section id="keys">
+          <h2>Common shortcuts</h2>
+          <p>Defaults may be customized in Preferences → Hotkeys.</p>
+          <table>
+            <thead><tr><th>Key</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>Space</td><td>Play / Pause</td></tr>
+              <tr><td>← / →</td><td>Seek ~1 s</td></tr>
+              <tr><td>Shift+← / →</td><td>Seek ~5 s</td></tr>
+              <tr><td>F4</td><td>Toggle Browser</td></tr>
+              <tr><td>F12</td><td>Next visualization</td></tr>
+              <tr><td>Ctrl+P</td><td>Preferences</td></tr>
+              <tr><td>Ctrl+L</td><td>Locate current file</td></tr>
+              <tr><td>F2</td><td>Rename</td></tr>
+              <tr><td>Del</td><td>Delete</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="faq">
+          <h2>FAQ</h2>
+          <h3>Blocked by Windows?</h3>
+          <p>Unsigned build — use More info → Run anyway.</p>
+          <h3>Empty loudness columns?</h3>
+          <p>Wait for analysis or use Refresh Loudness. Very long videos may be skipped.</p>
+          <h3>Is audio uploaded?</h3>
+          <p>No. Audition and analysis run locally.</p>
+          <h3>Feedback</h3>
+          <p><a href="https://github.com/JANFNASY/Sonora/issues">GitHub Issues</a></p>
+        </section>
+
+        <section id="pro">
+          <h2>Sonora Pro</h2>
+          <p>
+            Planned directions include batch loudness CSV reports, CLI, macOS/Linux,
+            library database, loop auto-editing, ASIO, and more. See
+            <a href="https://github.com/JANFNASY/Sonora/blob/main/ROADMAP.md">ROADMAP.md</a>.
+            No schedule or commercial terms are promised here.
+          </p>
+        </section>
+
+        <footer class="page-foot">
+          <span>Sonora Free documentation</span>
+          <a href="../index.html">← Website</a>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

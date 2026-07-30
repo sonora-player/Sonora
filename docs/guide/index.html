@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sonora Docs — 使用说明书</title>
+    <meta name="description" content="Sonora Free 用户说明书：安装、界面、播放、响度、选区与批处理。" />
+    <link rel="icon" href="../assets/sonora-logo.png" />
+    <link rel="stylesheet" href="docs.css" />
+  </head>
+  <body>
+    <div class="docs">
+      <aside class="side">
+        <a class="side-brand" href="../index.html">
+          <img src="../assets/sonora-logo.png" alt="" width="22" height="22" />
+          Sonora Docs
+        </a>
+        <p class="side-meta">Free · Windows · v0.9.1</p>
+        <nav class="toc">
+          <a href="#intro">简介</a>
+          <a href="#install">安装与启动</a>
+          <a href="#ui">界面导览</a>
+          <a href="#browse">打开与浏览</a>
+          <a href="#playback">播放</a>
+          <a href="#viz">波形与可视化</a>
+          <a href="#meters">电平与响度</a>
+          <a href="#edit">选区 · Cue · A-B</a>
+          <a href="#files">文件与批处理</a>
+          <a href="#prefs">偏好设置</a>
+          <a href="#keys">快捷键</a>
+          <a href="#faq">常见问题</a>
+          <a href="#pro">Sonora Pro</a>
+        </nav>
+        <div class="side-links">
+          <a href="../index.html">官网</a>
+          <a href="en.html">English</a>
+          <a href="https://github.com/JANFNASY/Sonora/releases">下载</a>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="page-head">
+          <p class="eyebrow">User Manual</p>
+          <h1>Sonora 使用说明书</h1>
+          <p class="lede">
+            Sonora 是带响度分析的快速试听与剪辑播放器，帮助音频编辑、声音设计师以及需要专业音频支持的人，更快完成「听到 → 看清 → 轻剪」。
+          </p>
+        </header>
+
+        <section id="intro">
+          <h2>简介</h2>
+          <p>以<strong>文件夹</strong>为单位工作，而不是强制建库。打开目录后即可试听采样、分轨与成片，同时观察波形、频谱、电平与响度，并完成轻量导出与文件整理。</p>
+          <ul>
+            <li>当前公开版本为 <strong>Sonora Free</strong>（Windows x64）</li>
+            <li>音频与分析均在本地完成，默认不上传你的素材</li>
+            <li>产品定位是提效播放器，不是完整 DAW 或素材库套件</li>
+          </ul>
+        </section>
+
+        <section id="install">
+          <h2>安装与启动</h2>
+          <h3>安装包</h3>
+          <p>从 <a href="https://github.com/JANFNASY/Sonora/releases">GitHub Releases</a> 下载 <code>Sonora_*_x64-setup.exe</code> 并运行。安装程序可注册常见音频扩展名的文件关联与图标。</p>
+          <h3>便携版</h3>
+          <p>直接运行 <code>Sonora_*_portable.exe</code>（或 <code>sonora.exe</code>），无需安装。便携版通常不写入文件关联。</p>
+          <h3>SmartScreen</h3>
+          <p>当前构建尚未代码签名。若 Windows 提示「Windows 已保护你的电脑」，选择 <strong>更多信息</strong> → <strong>仍要运行</strong>。</p>
+          <h3>打开方式</h3>
+          <table>
+            <thead>
+              <tr><th>方式</th><th>行为</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>双击已关联的音频文件</td><td>启动并进入该文件所在文件夹，开始播放</td></tr>
+              <tr><td>程序已运行时再双击</td><td>单实例：聚焦现有窗口并切换文件</td></tr>
+              <tr><td>拖入文件</td><td>进入其所在文件夹并播放</td></tr>
+              <tr><td>拖入文件夹</td><td>载入该文件夹的文件列表</td></tr>
+              <tr><td>File → Open Folder…</td><td>通过对话框选择文件夹</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="ui">
+          <h2>界面导览</h2>
+<pre class="layout">┌──────────────────────────────────────────────┐
+│ 标题栏 / 菜单                                 │
+├──────────────────────────────────────────────┤
+│ 工具栏：导航 · 走带 · 模式 · 时间 · 监听 · 音量 │
+├──────────┬─────────────────────┬─────────────┤
+│ Browser  │ 文件列表             │ Details     │
+├──────────┴─────────────────────┴─────────────┤
+│ 波形 / 频谱 / Waterfall 等可视化               │
+├──────────────────────────────────────────────┤
+│ 电平表 · 响度统计 · 相位/平衡（可按模块开关）   │
+├──────────────────────────────────────────────┤
+│ 状态栏：版本 · 消息 · SCM/DCM · 后端 · 偏好    │
+└──────────────────────────────────────────────┘</pre>
+          <ul>
+            <li><strong>Browser</strong>（F4）：驱动器、常用位置与目录树</li>
+            <li><strong>文件列表</strong>：当前文件夹音频；可过滤、排序、多选；含响度等列</li>
+            <li><strong>Details</strong>（Alt+Enter）：元数据与响度详情</li>
+            <li><strong>可视化区</strong>（F12）：波形与多种分析视图</li>
+            <li><strong>状态栏</strong>：版本号、SCM/DCM、输出后端入口、Preferences</li>
+          </ul>
+        </section>
+
+        <section id="browse">
+          <h2>打开与浏览</h2>
+          <ul>
+            <li>工具栏 <strong>Parent folder</strong> 返回上级；文件夹历史可打开最近目录</li>
+            <li><strong>Locate</strong>（Ctrl+L）在 Browser / 列表中定位当前播放文件</li>
+            <li>列表上方搜索框可过滤当前文件夹内的文件名</li>
+            <li>列头可排序；列菜单可调整显示列与顺序（水平滚动支持宽列表）</li>
+            <li>状态栏 <strong>SCM / DCM</strong>：单击播放 / 双击播放</li>
+          </ul>
+        </section>
+
+        <section id="playback">
+          <h2>播放</h2>
+          <h3>走带</h3>
+          <p>上一首 / 播放暂停 / 停止 / 下一首。空格切换播放暂停；左右方向键微调位置；上下方向键调节音量。</p>
+          <h3>播放模式</h3>
+          <ul>
+            <li><strong>Sequential / Shuffle</strong>：顺序或随机</li>
+            <li><strong>Loop One</strong>：单曲循环</li>
+            <li><strong>Stop after current</strong>：播完当前文件后停止</li>
+            <li><strong>Keep Position</strong>：切换文件时尽量保持播放位置（便于对比 takes / 混音版本）</li>
+          </ul>
+          <h3>监听辅助</h3>
+          <table>
+            <thead><tr><th>控件</th><th>作用</th></tr></thead>
+            <tbody>
+              <tr><td>Dim</td><td>输出衰减约 −14 dB</td></tr>
+              <tr><td>Mono</td><td>单声道监听</td></tr>
+              <tr><td>Downmix</td><td>强制下混为立体声输出</td></tr>
+              <tr><td>Mute</td><td>静音</td></tr>
+              <tr><td>Volume</td><td>主音量；右键打开预设</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="viz">
+          <h2>波形与可视化</h2>
+          <p>工具栏可视化按钮：单击循环模式，右键直接选择。也可按 F12 循环。</p>
+          <table>
+            <thead><tr><th>模式</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td>Waveform</td><td>整文件波形总览，点击跳转，拖动创建选区</td></tr>
+              <tr><td>Spectrogram</td><td>频谱图；Ctrl + 滚轮缩放</td></tr>
+              <tr><td>3D Waterfall</td><td>实时频谱瀑布</td></tr>
+              <tr><td>Log / Lin Analyzer</td><td>对数 / 线性实时频率分析</td></tr>
+              <tr><td>Bars</td><td>频段柱状显示</td></tr>
+              <tr><td>Oscilloscope</td><td>示波器视图</td></tr>
+            </tbody>
+          </table>
+          <p>可在 Preferences / Interface 中开关 <strong>Show cursor readouts</strong>（光标时间与频率读数）。</p>
+        </section>
+
+        <section id="meters">
+          <h2>电平与响度</h2>
+          <ul>
+            <li><strong>输出表</strong>：单击循环 Peak / RMS / K-14 / VU，右键直接选择</li>
+            <li><strong>相位 / 平衡</strong>：立体声关系观察（可在界面模块中开关）</li>
+            <li><strong>文件响度</strong>：Integrated LUFS、LRA、True Peak 等可显示在列表与 Details</li>
+            <li>右键文件 → <strong>Refresh Loudness</strong> 可对选中项重新分析（长视频可能跳过）</li>
+          </ul>
+        </section>
+
+        <section id="edit">
+          <h2>选区 · Cue · A-B</h2>
+          <h3>选区</h3>
+          <p>在波形上拖动创建选区；可循环选区、复制到 A-B、或导出为文件（WAV / float WAV / MP3 / OGG / AAC 等，含增益与淡入淡出选项）。也可拖拽选区句柄到资源管理器或 DAW。</p>
+          <h3>Cue</h3>
+          <p>工具栏添加 Cue（左键添加，右键打开 Cue 相关选项）。Cue 按文件保存，可在 Cue 间跳转。</p>
+          <h3>A-B 循环</h3>
+          <p>在播放头设置 A / B，开启 A-B Loop 重复该区间；可从当前选区一键写入 A-B。</p>
+        </section>
+
+        <section id="files">
+          <h2>文件与批处理</h2>
+          <h3>列表操作</h3>
+          <p>剪切 / 复制 / 粘贴、全选、反选、删除（回收站）、重命名（F2）、在资源管理器中显示等。多选时菜单项会显示数量后缀。</p>
+          <h3>批量工具</h3>
+          <ul>
+            <li><strong>Batch Rename</strong>：规则重命名，带预览与撤销</li>
+            <li><strong>Export / Convert</strong>：批量转码</li>
+            <li><strong>Export CSV</strong>：导出当前列表字段（含已分析的响度等）</li>
+          </ul>
+        </section>
+
+        <section id="prefs">
+          <h2>偏好设置（Ctrl+P）</h2>
+          <h3>Sound</h3>
+          <ul>
+            <li>输出设备（WASAPI 等）</li>
+            <li>采样率：Auto 或固定值</li>
+            <li>声道：Auto / 1 / 2 / 5.1 / 7.1</li>
+            <li>独占模式等选项</li>
+            <li>ASIO 在 Free 中为占位（Pro 能力方向）</li>
+          </ul>
+          <h3>Interface / File List / Hotkeys</h3>
+          <ul>
+            <li>主题：Light / Dark / Follow system</li>
+            <li>字号、密度、模块显隐、光标读数</li>
+            <li>列表列与行为相关选项</li>
+            <li>Hotkeys：查看并自定义快捷键，自动检测冲突</li>
+          </ul>
+          <p>设置保存在本机，不随安装包分发。</p>
+        </section>
+
+        <section id="keys">
+          <h2>常用快捷键</h2>
+          <p>完整列表以 Preferences → Hotkeys 为准；下列为常见默认。</p>
+          <table>
+            <thead><tr><th>快捷键</th><th>功能</th></tr></thead>
+            <tbody>
+              <tr><td>Space</td><td>播放 / 暂停</td></tr>
+              <tr><td>← / →</td><td>后退 / 前进约 1 秒</td></tr>
+              <tr><td>Shift+← / →</td><td>后退 / 前进约 5 秒</td></tr>
+              <tr><td>↑ / ↓</td><td>音量</td></tr>
+              <tr><td>F4</td><td>显示 / 隐藏 Browser</td></tr>
+              <tr><td>F12</td><td>切换可视化</td></tr>
+              <tr><td>Ctrl+P</td><td>偏好设置</td></tr>
+              <tr><td>Ctrl+L</td><td>定位当前文件</td></tr>
+              <tr><td>F2</td><td>重命名</td></tr>
+              <tr><td>Del</td><td>删除到回收站</td></tr>
+              <tr><td>Ctrl+Enter</td><td>在资源管理器中显示文件</td></tr>
+              <tr><td>Alt+Enter</td><td>Details</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section id="faq">
+          <h2>常见问题</h2>
+          <h3>为什么安装/运行被拦截？</h3>
+          <p>尚未代码签名。按 SmartScreen 提示「更多信息 → 仍要运行」即可。</p>
+          <h3>响度列为什么是空的？</h3>
+          <p>响度需分析后才有值。可等待后台分析，或对选中文件使用 Refresh Loudness。过长视频可能被跳过。</p>
+          <h3>数据会上传吗？</h3>
+          <p>试听与分析在本地进行。官网仅用于下载与说明；捐助跳转到你配置的外部收款页。</p>
+          <h3>如何反馈问题？</h3>
+          <p>使用 <a href="https://github.com/JANFNASY/Sonora/issues">GitHub Issues</a>。</p>
+        </section>
+
+        <section id="pro">
+          <h2>Sonora Pro</h2>
+          <p>路线图中的进阶能力包括：响度报告 CSV 批量导出、CLI、macOS/Linux、音频库扫库、Loop 自动剪辑、ASIO 等。详见仓库 <a href="https://github.com/JANFNASY/Sonora/blob/main/ROADMAP.md">ROADMAP.md</a>。对外不承诺档期或商务条款。</p>
+        </section>
+
+        <footer class="page-foot">
+          <span>Sonora Free documentation</span>
+          <a href="../index.html">← 返回官网</a>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
