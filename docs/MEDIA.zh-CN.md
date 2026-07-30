@@ -46,6 +46,18 @@ git push
 
 刷新 https://sonora-player.github.io/Sonora/ 即可看到图。
 
+## 国内网络说明
+
+官网托管在 **GitHub Pages**（`*.github.io`）。在大陆移动网络 / 无 VPN 时，整站或大图（尤其 1–2MB 的 GIF）经常打不开，这不是「只给外网看」的单独图床，而是 GitHub 访问受限。
+
+页面已做两层兜底：
+
+1. **优先加载较小的静图**（`.png` / `.webp` / `.jpg`），再尝试 GIF  
+2. 同源失败时，改从 **jsDelivr CDN** 拉取同仓资源：  
+   `https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/...`
+
+若连 HTML 都打不开，需要镜像站或自建 Pages（Cloudflare / 国内对象存储），可另开任务。
+
 ## 不必一次做齐
 
 可以先只给 `hero.png`（Win+Shift+S 截全窗也行），功能区 GIF 以后再补。
