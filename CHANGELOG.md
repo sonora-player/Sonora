@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.3
+
+- Taskbar icon uses frosted left-to-right fill (Win10/Win11): green play, amber pause, idle stop, red error, violet analyzing
+- Preference to enable/disable taskbar playback icon
+- Site media: lighter posters first + jsDelivr CDN fallback
+
 ## 0.9.2
 
 - Taskbar progress bar: green while playing, red while paused (playback position)
@@ -36,7 +42,7 @@
 
 ## 0.8.6
 
-- Volume slider right-click presets (Mute, 10â€“100%, Save / Restore)
+- Volume slider right-click presets (Mute, 10â€?00%, Save / Restore)
 - Default volume 100%
 
 ## 0.8.5
