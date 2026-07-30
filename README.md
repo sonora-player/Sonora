@@ -5,10 +5,7 @@
 Sonora helps audio editors, sound designers, and anyone who works with
 professional audio move quicker from hearing a file to shaping it.
 
-[Website](#) · [Download](https://github.com/OWNER/Sonora/releases) · [Roadmap](ROADMAP.md) · [Donate](#donate)
-
-> Replace `OWNER` with your GitHub username after the repository is created.
-> Update website / donate links in `landing/index.html` and this README together.
+[Website](https://janfnasy.github.io/Sonora/) · [Download](https://github.com/JANFNASY/Sonora/releases) · [Roadmap](ROADMAP.md) · [Donate](#donate)
 
 ---
 
@@ -22,7 +19,7 @@ Sonora is a Windows desktop player built around folder-based audition:
 
 ## Download
 
-Visit **[Releases](https://github.com/OWNER/Sonora/releases)** for the latest build.
+Visit **[Releases](https://github.com/JANFNASY/Sonora/releases)** for the latest build.
 
 | Package | Notes |
 | --- | --- |
@@ -44,7 +41,7 @@ Linux, library database, loop auto-editing, ASIO, and more — see [ROADMAP.md](
 
 ## Feedback
 
-Use [GitHub Issues](https://github.com/OWNER/Sonora/issues) for bugs and ideas.
+Use [GitHub Issues](https://github.com/JANFNASY/Sonora/issues) for bugs and ideas.
 
 ## License
 
