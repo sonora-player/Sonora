@@ -11,18 +11,17 @@
     <link rel="icon" href="assets/sonora-logo.png" />
     <style>
       :root {
-        --page: #0c1016;
-        --ink: #e8edf4;
-        --muted: rgba(232, 237, 244, 0.58);
-        --soft: rgba(232, 237, 244, 0.42);
-        --line: rgba(232, 237, 244, 0.12);
-        --accent: #5a9be0;
-        --accent-strong: #3d7fd0;
-        --accent-ink: #0c1016;
-        --panel: rgba(255, 255, 255, 0.04);
-        --radius: 14px;
-        --font-sans: "Segoe UI Variable", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
-        --font-mono: "Cascadia Mono", Consolas, ui-monospace, monospace;
+        --page: #0b0f14;
+        --ink: #eef2f7;
+        --muted: rgba(238, 242, 247, 0.62);
+        --soft: rgba(238, 242, 247, 0.42);
+        --line: rgba(238, 242, 247, 0.1);
+        --accent: #6aa8e8;
+        --accent-ink: #0b0f14;
+        --card: #141a22;
+        --card-edge: rgba(238, 242, 247, 0.08);
+        --font: "Segoe UI Variable", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+        --mono: "Cascadia Mono", Consolas, ui-monospace, monospace;
       }
 
       *,
@@ -39,7 +38,7 @@
         margin: 0;
         background: var(--page);
         color: var(--ink);
-        font-family: var(--font-sans);
+        font-family: var(--font);
         -webkit-font-smoothing: antialiased;
       }
 
@@ -48,20 +47,15 @@
         text-decoration: none;
       }
 
-      .site-shell {
+      .shell {
         min-height: 100dvh;
         background:
-          linear-gradient(180deg, rgba(90, 155, 224, 0.1), transparent 420px),
-          radial-gradient(circle at 78% -10%, rgba(90, 155, 224, 0.18), transparent 36%),
-          radial-gradient(circle at 10% 12%, rgba(90, 212, 160, 0.07), transparent 26%),
+          radial-gradient(ellipse 80% 50% at 50% -20%, rgba(106, 168, 232, 0.16), transparent),
           var(--page);
       }
 
-      .nav,
-      .section,
-      .footer,
-      .download-inner {
-        width: min(100% - 48px, 1120px);
+      .wrap {
+        width: min(100% - 40px, 1080px);
         margin: 0 auto;
       }
 
@@ -69,28 +63,25 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 24px;
-        min-height: 76px;
+        min-height: 68px;
       }
 
       .brand {
         display: inline-flex;
         align-items: center;
-        gap: 12px;
-        font-size: 15px;
+        gap: 10px;
         font-weight: 650;
+        font-size: 15px;
       }
 
       .brand img {
-        width: 30px;
-        height: 30px;
-        display: block;
+        width: 28px;
+        height: 28px;
       }
 
       .nav-links {
         display: flex;
-        align-items: center;
-        gap: 24px;
+        gap: 22px;
         color: var(--soft);
         font-size: 13px;
         font-weight: 560;
@@ -101,55 +92,51 @@
       }
 
       .hero {
-        padding: 56px 0 0;
+        padding: 48px 0 28px;
       }
 
       .eyebrow {
-        margin: 0 0 18px;
+        margin: 0 0 14px;
         color: var(--accent);
-        font-size: 14px;
-        font-weight: 560;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
       }
 
-      .hero-title {
-        max-width: 920px;
+      .hero h1 {
         margin: 0;
-        font-size: clamp(40px, 5vw, 64px);
+        max-width: 16ch;
+        font-size: clamp(38px, 5.2vw, 58px);
         line-height: 1.05;
-        letter-spacing: -0.035em;
+        letter-spacing: -0.038em;
         font-weight: 720;
       }
 
-      .hero-subtitle {
-        max-width: 720px;
-        margin: 24px 0 0;
+      .hero-lead {
+        margin: 20px 0 0;
+        max-width: 38rem;
         color: var(--muted);
-        font-size: clamp(17px, 1.8vw, 22px);
-        line-height: 1.4;
+        font-size: clamp(16px, 1.7vw, 20px);
+        line-height: 1.45;
       }
 
-      .hero-actions {
+      .actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 34px;
+        gap: 10px;
+        margin-top: 28px;
       }
 
       .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        min-height: 44px;
-        padding: 0 20px;
-        border: 1px solid transparent;
+        min-height: 42px;
+        padding: 0 18px;
         border-radius: 999px;
+        border: 1px solid transparent;
         font-size: 14px;
-        font-weight: 660;
-        transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
-      }
-
-      .btn:active {
-        transform: translateY(1px);
+        font-weight: 650;
       }
 
       .btn-primary {
@@ -158,181 +145,260 @@
       }
 
       .btn-primary:hover {
-        background: #7eb0e8;
+        filter: brightness(1.06);
       }
 
-      .btn-secondary {
+      .btn-ghost {
         border-color: var(--line);
-        background: var(--panel);
+        background: rgba(255, 255, 255, 0.03);
       }
 
-      .btn-secondary:hover {
-        border-color: rgba(90, 155, 224, 0.45);
-        background: rgba(90, 155, 224, 0.1);
+      .btn-ghost:hover {
+        border-color: rgba(106, 168, 232, 0.45);
       }
 
-      .hero-note {
-        flex-basis: 100%;
-        margin: 4px 0 0;
+      .note {
+        width: 100%;
+        margin: 6px 0 0;
         color: var(--soft);
         font-size: 13px;
       }
 
-      .shot {
+      .media {
+        position: relative;
         overflow: hidden;
         margin: 0;
-        border: 1px solid var(--line);
+        border: 1px solid var(--card-edge);
         border-radius: 12px;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
-          #121820;
+        background: var(--card);
         aspect-ratio: 16 / 9;
-        display: grid;
-        place-items: center;
-        color: var(--soft);
-        font-size: 14px;
       }
 
-      .shot.has-image img {
+      .media img,
+      .media video {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
       }
 
-      .hero-shot {
-        width: min(100%, 1120px);
-        margin: 44px auto 0;
+      .media-ph {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-content: center;
+        gap: 6px;
+        padding: 24px;
+        text-align: center;
+        color: var(--soft);
+        font-size: 13px;
+        line-height: 1.45;
+        background:
+          linear-gradient(180deg, rgba(106, 168, 232, 0.06), transparent 55%),
+          repeating-linear-gradient(
+            -12deg,
+            transparent,
+            transparent 10px,
+            rgba(255, 255, 255, 0.015) 10px,
+            rgba(255, 255, 255, 0.015) 11px
+          );
       }
 
-      .principles {
+      .media-ph code {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+      }
+
+      .hero-media {
+        margin-top: 36px;
+        aspect-ratio: 16 / 9.2;
+        box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+      }
+
+      .strip {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 0;
-        padding: 48px 0 28px;
+        padding: 36px 0;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
       }
 
-      .principle {
-        padding: 0 24px;
+      .strip article {
+        padding: 0 22px;
         border-left: 1px solid var(--line);
       }
 
-      .principle:first-child {
+      .strip article:first-child {
         padding-left: 0;
         border-left: 0;
       }
 
-      .principle h2 {
+      .strip h2 {
         margin: 0;
-        font-size: 20px;
+        font-size: 18px;
         letter-spacing: -0.02em;
       }
 
-      .principle p {
-        margin: 12px 0 0;
+      .strip p {
+        margin: 10px 0 0;
         color: var(--muted);
-        font-size: 15px;
+        font-size: 14px;
         line-height: 1.5;
-        max-width: 320px;
+        max-width: 28ch;
       }
 
-      .features {
-        padding: 10px 0 20px;
+      .block {
+        padding: 56px 0 0;
+      }
+
+      .block-head {
+        max-width: 40rem;
+        margin-bottom: 28px;
+      }
+
+      .block-head h2 {
+        margin: 0;
+        font-size: clamp(28px, 3.4vw, 40px);
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+      }
+
+      .block-head p {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 16px;
+        line-height: 1.5;
       }
 
       .feature {
         display: grid;
-        grid-template-columns: minmax(260px, 0.9fr) minmax(0, 1.1fr);
-        gap: 40px;
+        grid-template-columns: 1fr 1.05fr;
+        gap: 36px;
         align-items: center;
-        padding: 44px 0;
+        padding: 40px 0;
         border-top: 1px solid var(--line);
       }
 
-      .feature h2 {
+      .feature.reverse {
+        grid-template-columns: 1.05fr 1fr;
+      }
+
+      .feature.reverse .feature-copy {
+        order: 2;
+      }
+
+      .feature h3 {
         margin: 0;
-        font-size: clamp(28px, 3.2vw, 42px);
-        line-height: 1.08;
-        letter-spacing: -0.03em;
+        font-size: clamp(24px, 2.6vw, 32px);
+        letter-spacing: -0.028em;
+        line-height: 1.15;
       }
 
-      .feature p {
-        margin: 16px 0 0;
-        color: var(--muted);
-        font-size: 17px;
-        line-height: 1.5;
-        max-width: 460px;
-      }
-
-      .feature-points {
-        list-style: none;
-        margin: 22px 0 0;
-        padding: 0;
-        border-top: 1px solid rgba(232, 237, 244, 0.08);
-        max-width: 480px;
-      }
-
-      .feature-points li {
-        position: relative;
-        padding: 11px 0 11px 16px;
-        border-bottom: 1px solid rgba(232, 237, 244, 0.08);
-        color: var(--muted);
-        font-size: 16px;
-        line-height: 1.45;
-      }
-
-      .feature-points li::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 1.35em;
-        width: 5px;
-        height: 5px;
-        border-radius: 999px;
-        background: var(--accent);
-      }
-
-      .feature-visual .shot {
-        width: 100%;
-      }
-
-      .donate-block,
-      .pro-block {
-        padding: 36px 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .donate-block h2,
-      .pro-block h2 {
-        margin: 0;
-        font-size: clamp(28px, 3vw, 40px);
-        letter-spacing: -0.03em;
-      }
-
-      .donate-block p,
-      .pro-block p {
-        max-width: 560px;
+      .feature .lead {
         margin: 14px 0 0;
         color: var(--muted);
         font-size: 16px;
+        line-height: 1.5;
+        max-width: 36ch;
+      }
+
+      .bullets {
+        list-style: none;
+        margin: 18px 0 0;
+        padding: 0;
+        max-width: 38ch;
+      }
+
+      .bullets li {
+        position: relative;
+        padding: 9px 0 9px 14px;
+        border-top: 1px solid rgba(238, 242, 247, 0.07);
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.45;
+      }
+
+      .bullets li:last-child {
+        border-bottom: 1px solid rgba(238, 242, 247, 0.07);
+      }
+
+      .bullets li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 1.15em;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--accent);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .card {
+        padding: 18px 18px 16px;
+        border: 1px solid var(--card-edge);
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: -0.01em;
+      }
+
+      .card p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        font-size: 13.5px;
+        line-height: 1.45;
+      }
+
+      .pro,
+      .donate {
+        padding: 52px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .pro h2,
+      .donate h2,
+      .download h2 {
+        margin: 0;
+        font-size: clamp(28px, 3.2vw, 40px);
+        letter-spacing: -0.03em;
+      }
+
+      .pro p,
+      .donate p {
+        margin: 12px 0 0;
+        max-width: 36rem;
+        color: var(--muted);
+        font-size: 15px;
         line-height: 1.5;
       }
 
       .pro-list {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 10px 28px;
-        margin: 22px 0 0;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 24px;
+        margin: 20px 0 0;
         padding: 0;
         list-style: none;
-        color: var(--muted);
-        font-size: 15px;
-        line-height: 1.45;
       }
 
       .pro-list li {
         position: relative;
-        padding-left: 14px;
+        padding-left: 12px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.45;
       }
 
       .pro-list li::before {
@@ -342,53 +408,41 @@
         top: 0.55em;
         width: 5px;
         height: 5px;
-        border-radius: 999px;
+        border-radius: 50%;
         background: var(--accent);
       }
 
-      .download-section {
-        margin-top: 28px;
-        padding: 64px 0 40px;
-        background: #080b10;
+      .download {
+        margin-top: 8px;
+        padding: 56px 0 40px;
+        background: #070a0e;
       }
 
-      .download-header h2 {
-        margin: 0 0 24px;
-        font-size: clamp(32px, 4vw, 52px);
-        letter-spacing: -0.035em;
-      }
-
-      .platform-card {
-        padding: 22px 24px;
-        border: 1px solid rgba(90, 155, 224, 0.35);
-        border-radius: var(--radius);
-        background: rgba(90, 155, 224, 0.08);
-        max-width: 520px;
+      .platform {
+        margin-top: 22px;
+        max-width: 480px;
+        padding: 20px 22px;
+        border: 1px solid rgba(106, 168, 232, 0.35);
+        border-radius: 14px;
+        background: rgba(106, 168, 232, 0.07);
       }
 
       .platform-name {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 680;
       }
 
-      .platform-os-tag {
+      .platform-tag {
         margin-top: 4px;
         color: var(--soft);
-        font-family: var(--font-mono);
+        font-family: var(--mono);
         font-size: 12px;
       }
 
-      .platform-actions {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin: 18px 0 12px;
-      }
-
-      .install-warning {
-        margin: 0;
+      .warn {
+        margin: 14px 0 0;
         padding-top: 12px;
-        border-top: 1px solid rgba(232, 237, 244, 0.08);
+        border-top: 1px solid rgba(238, 242, 247, 0.08);
         color: var(--muted);
         font-size: 13px;
         line-height: 1.5;
@@ -397,187 +451,275 @@
       .footer {
         display: flex;
         flex-wrap: wrap;
+        gap: 16px;
         align-items: center;
-        gap: 18px;
-        padding: 22px 0 28px;
+        padding: 20px 0 28px;
         color: var(--soft);
         font-size: 13px;
+      }
+
+      .footer .ver {
+        margin-right: auto;
       }
 
       .footer a:hover {
         color: var(--ink);
       }
 
-      .release-note {
-        margin-right: auto;
-      }
-
-      @media (max-width: 900px) {
-        .nav,
-        .section,
-        .footer,
-        .download-inner {
-          width: min(100% - 28px, 1120px);
-        }
-
-        .principles,
+      @media (max-width: 860px) {
+        .strip,
         .feature,
+        .feature.reverse,
+        .grid,
         .pro-list {
           grid-template-columns: 1fr;
         }
 
-        .principle,
-        .principle:first-child {
-          padding: 18px 0;
+        .feature.reverse .feature-copy {
+          order: 0;
+        }
+
+        .strip article,
+        .strip article:first-child {
+          padding: 16px 0;
           border-left: 0;
           border-top: 1px solid var(--line);
         }
 
-        .nav-links a:not(.nav-download) {
+        .nav-links a:not(.nav-dl) {
           display: none;
         }
       }
     </style>
   </head>
   <body>
-    <div class="site-shell">
-      <nav class="nav">
-        <a class="brand" href="#">
-          <img src="assets/sonora-logo.png" alt="" width="30" height="30" />
-          Sonora
-        </a>
-        <div class="nav-links">
-          <a href="#features">Features</a>
-          <a href="#pro">Pro</a>
-          <a href="#donate">Donate</a>
-          <a id="nav-github" href="#">GitHub</a>
-          <a class="nav-download" href="#download">Download</a>
-        </div>
-      </nav>
-
-      <header class="section hero">
-        <p class="eyebrow">Windows · Free to use</p>
-        <h1 class="hero-title">Fast audition and editing with loudness metering.</h1>
-        <p class="hero-subtitle">
-          Built to help audio editors, sound designers, and anyone who works with
-          professional audio move quicker from hearing a file to shaping it.
-        </p>
-        <div class="hero-actions" id="hero-actions">
-          <a class="btn btn-primary" href="#download">Download for Windows</a>
-          <a class="btn btn-secondary" href="#donate">Donate</a>
-          <p class="hero-note">Folder-based preview · meters · light editing in one window.</p>
-        </div>
-        <figure class="shot hero-shot" id="hero-shot">
-          <span>Screenshot placeholder — drop UI captures into assets/</span>
-        </figure>
-      </header>
-
-      <section class="section principles">
-        <div class="principle">
-          <h2>Hear fast</h2>
-          <p>Audition samples and stems by folder, with transport that stays out of the way.</p>
-        </div>
-        <div class="principle">
-          <h2>See clearly</h2>
-          <p>Level, loudness, waveform and spectrum stay visible while you listen.</p>
-        </div>
-        <div class="principle">
-          <h2>Shape lightly</h2>
-          <p>Selection, cues, convert, rename and export without leaving the player.</p>
-        </div>
-      </section>
-
-      <section class="section features" id="features">
-        <article class="feature">
-          <div>
-            <h2>Watch the signal while you audition</h2>
-            <p>
-              Peak, RMS, K-system style meters and loudness readouts sit next to
-              waveform and analyzer views so you can judge files in context.
-            </p>
-            <ul class="feature-points">
-              <li>Waveform, spectrogram, bars, frequency and waterfall views</li>
-              <li>Integrated loudness analysis for files you care about</li>
-              <li>Cursor readouts for time and frequency when you need them</li>
-            </ul>
+    <div class="shell">
+      <div class="wrap">
+        <nav class="nav">
+          <a class="brand" href="#">
+            <img src="assets/sonora-logo.png" alt="" width="28" height="28" />
+            Sonora
+          </a>
+          <div class="nav-links">
+            <a href="#look">Look</a>
+            <a href="#features">Features</a>
+            <a href="#pro">Pro</a>
+            <a href="#donate">Donate</a>
+            <a id="nav-github" href="#">GitHub</a>
+            <a class="nav-dl" href="#download">Download</a>
           </div>
-          <div class="feature-visual">
-            <figure class="shot"><span>Meters / waveform screenshot</span></figure>
-          </div>
-        </article>
+        </nav>
 
-        <article class="feature">
-          <div>
-            <h2>Stay in the folder workflow</h2>
-            <p>
-              Open a folder, filter the list, keep position when switching files,
-              and handle common file jobs without bouncing to Explorer.
-            </p>
-            <ul class="feature-points">
-              <li>Browser tree, details panel, multilingual UI</li>
-              <li>Batch rename, convert / export, CSV list export</li>
-              <li>A-B loop, cues, selection tools for quick shaping</li>
-            </ul>
+        <header class="hero">
+          <p class="eyebrow">Windows · Free to use</p>
+          <h1>Fast audition and editing with loudness metering.</h1>
+          <p class="hero-lead">
+            Built to help audio editors, sound designers, and anyone who works
+            with professional audio move quicker from hearing a file to shaping it.
+          </p>
+          <div class="actions" id="hero-actions">
+            <a class="btn btn-primary" href="#download">Download for Windows</a>
+            <a class="btn btn-ghost" href="#donate">Donate</a>
+            <p class="note">Folder preview · meters · light editing in one window.</p>
           </div>
-          <div class="feature-visual">
-            <figure class="shot"><span>File list screenshot</span></figure>
-          </div>
-        </article>
-      </section>
-
-      <section class="section pro-block" id="pro">
-        <h2>Coming in Sonora Pro</h2>
-        <p>
-          Additional capabilities on the roadmap — no schedule promised. See the
-          full list in the repository.
-        </p>
-        <ul class="pro-list">
-          <li>Batch loudness report CSV export</li>
-          <li>CLI for scripting and unattended analysis</li>
-          <li>macOS and Linux</li>
-          <li>Audio library database (scan / index)</li>
-          <li>Loop auto-editing with fades</li>
-          <li>ASIO, selection export, pitch, recording, batch targets</li>
-        </ul>
-        <div class="hero-actions" style="margin-top: 22px">
-          <a class="btn btn-secondary" id="roadmap-link" href="#">Read roadmap</a>
-        </div>
-      </section>
-
-      <section class="section donate-block" id="donate">
-        <h2>Support Sonora Free</h2>
-        <p>
-          Sonora Free is free to use. If it saves you time, a voluntary donation
-          helps keep maintenance going. Donations are appreciation — not a
-          purchase of Sonora Pro.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" id="donate-btn" href="#">Donate</a>
-        </div>
-      </section>
-
-      <section class="download-section" id="download">
-        <div class="download-inner">
-          <div class="download-header">
-            <h2>Download Sonora</h2>
-          </div>
-          <div class="platform-card" id="platform-card">
-            <div class="platform-name">Windows</div>
-            <div class="platform-os-tag">10 / 11 · x64</div>
-            <div class="platform-actions">
-              <a class="btn btn-primary" id="dl-installer" href="#">View Releases</a>
-              <a class="btn btn-secondary" id="dl-portable" href="#">Portable</a>
+          <figure class="media hero-media" data-media="assets/hero">
+            <div class="media-ph">
+              <span>Main window</span>
+              <code>assets/hero.gif</code> or <code>hero.png</code>
             </div>
-            <p class="install-warning">
-              If SmartScreen appears, choose <strong>More info</strong>, then
-              <strong>Run anyway</strong>. Official builds are unsigned for now.
+          </figure>
+        </header>
+
+        <section class="strip" id="look">
+          <article>
+            <h2>Hear fast</h2>
+            <p>Open a folder and audition samples or stems without building a library first.</p>
+          </article>
+          <article>
+            <h2>See clearly</h2>
+            <p>Waveform, analyzers, level and loudness stay in view while you listen.</p>
+          </article>
+          <article>
+            <h2>Shape lightly</h2>
+            <p>Selection, cues, convert, rename and export without leaving the player.</p>
+          </article>
+        </section>
+
+        <section class="block" id="features">
+          <div class="block-head">
+            <h2>A closer look</h2>
+            <p>
+              The interface stays close to the file list and the signal — enough
+              to preview and trim quickly, without turning into a full editor.
+            </p>
+          </div>
+
+          <article class="feature">
+            <div class="feature-copy">
+              <h3>Waveform and analyzers</h3>
+              <p class="lead">
+                Seek visually, switch analyzer modes, and keep an eye on spectral
+                shape while you audition.
+              </p>
+              <ul class="bullets">
+                <li>Waveform with playhead, selection and A-B region</li>
+                <li>Spectrogram, bars, frequency and waterfall views</li>
+                <li>Cursor readouts for time and frequency</li>
+              </ul>
+            </div>
+            <figure class="media" data-media="assets/wave">
+              <div class="media-ph">
+                <span>Wave / analyzer</span>
+                <code>assets/wave.gif</code>
+              </div>
+            </figure>
+          </article>
+
+          <article class="feature reverse">
+            <div class="feature-copy">
+              <h3>Loudness and meters</h3>
+              <p class="lead">
+                Judge level and loudness in the same window you use to browse —
+                useful before a handoff or a quick QC pass.
+              </p>
+              <ul class="bullets">
+                <li>Peak / RMS / K-style output meters</li>
+                <li>Whole-file loudness analysis on demand</li>
+                <li>Refresh loudness for a selection from the file list</li>
+              </ul>
+            </div>
+            <figure class="media" data-media="assets/meters">
+              <div class="media-ph">
+                <span>Meters / loudness</span>
+                <code>assets/meters.gif</code>
+              </div>
+            </figure>
+          </article>
+
+          <article class="feature">
+            <div class="feature-copy">
+              <h3>Folder workflow</h3>
+              <p class="lead">
+                Browse directories, filter the list, keep position when switching
+                files, and jump back to the playing item.
+              </p>
+              <ul class="bullets">
+                <li>Browser tree and details panel</li>
+                <li>Sequential, shuffle, loop one, stop after current</li>
+                <li>Multilingual UI and customizable hotkeys</li>
+              </ul>
+            </div>
+            <figure class="media" data-media="assets/folder">
+              <div class="media-ph">
+                <span>Folder / file list</span>
+                <code>assets/folder.gif</code>
+              </div>
+            </figure>
+          </article>
+
+          <article class="feature reverse">
+            <div class="feature-copy">
+              <h3>Light editing tools</h3>
+              <p class="lead">
+                Mark, export and tidy files without a round-trip through a DAW
+                for every small job.
+              </p>
+              <ul class="bullets">
+                <li>Selection export with fade and format options</li>
+                <li>Cues, A-B loop, convert and batch rename</li>
+                <li>CSV export of the current list columns</li>
+              </ul>
+            </div>
+            <figure class="media" data-media="assets/edit">
+              <div class="media-ph">
+                <span>Selection / export</span>
+                <code>assets/edit.gif</code>
+              </div>
+            </figure>
+          </article>
+        </section>
+
+        <section class="block">
+          <div class="block-head">
+            <h2>Also in Free</h2>
+            <p>Small details that keep auditioning quick day to day.</p>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <h3>Portable</h3>
+              <p>Run the single exe without installing when you need a quick check.</p>
+            </div>
+            <div class="card">
+              <h3>Drag &amp; drop</h3>
+              <p>Drop folders in; drag selections or files out to Explorer or a DAW.</p>
+            </div>
+            <div class="card">
+              <h3>Keep position</h3>
+              <p>Compare takes by switching files at the same playback position.</p>
+            </div>
+            <div class="card">
+              <h3>Dim / mono / downmix</h3>
+              <p>Quick listen checks without opening a separate mixer.</p>
+            </div>
+            <div class="card">
+              <h3>WASAPI output</h3>
+              <p>Choose the device in Preferences; exclusive mode when you need it.</p>
+            </div>
+            <div class="card">
+              <h3>Local settings</h3>
+              <p>Theme, columns, hotkeys and UI prefs stay on your machine.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="pro" id="pro">
+          <h2>Coming in Sonora Pro</h2>
+          <p>Planned capabilities — no schedule. Details live in the roadmap.</p>
+          <ul class="pro-list">
+            <li>Batch loudness report CSV</li>
+            <li>CLI for unattended analysis</li>
+            <li>macOS and Linux</li>
+            <li>Audio library database</li>
+            <li>Loop auto-editing with fades</li>
+            <li>ASIO, pitch, recording, batch targets</li>
+          </ul>
+          <div class="actions" style="margin-top: 20px">
+            <a class="btn btn-ghost" id="roadmap-link" href="#">Read roadmap</a>
+          </div>
+        </section>
+
+        <section class="donate" id="donate">
+          <h2>Support Sonora Free</h2>
+          <p>
+            Free to use. If it saves you time, a voluntary donation helps
+            maintenance. Donations are appreciation — not a purchase of Pro.
+          </p>
+          <div class="actions">
+            <a class="btn btn-primary" id="donate-btn" href="#">Donate</a>
+          </div>
+        </section>
+      </div>
+
+      <section class="download" id="download">
+        <div class="wrap">
+          <h2>Download Sonora</h2>
+          <div class="platform">
+            <div class="platform-name">Windows</div>
+            <div class="platform-tag">10 / 11 · x64</div>
+            <div class="actions" style="margin-top: 16px">
+              <a class="btn btn-primary" id="dl-installer" href="#">View Releases</a>
+              <a class="btn btn-ghost" id="dl-portable" href="#">Portable</a>
+            </div>
+            <p class="warn">
+              If SmartScreen appears: <strong>More info</strong> →
+              <strong>Run anyway</strong>. Builds are unsigned for now.
             </p>
           </div>
         </div>
       </section>
 
-      <footer class="footer">
-        <span class="release-note" id="footer-version">Latest release</span>
+      <footer class="wrap footer">
+        <span class="ver" id="footer-version">Latest release</span>
         <a id="footer-github" href="#">GitHub</a>
         <a id="footer-releases" href="#">Releases</a>
         <a href="#donate">Donate</a>
@@ -585,10 +727,9 @@
     </div>
 
     <script>
-      // Fill these after the GitHub repo exists.
       const CONFIG = {
         repo: "JANFNASY/Sonora",
-        donateUrl: "", // e.g. https://afdian.com/a/... or Buy Me a Coffee
+        donateUrl: "",
       };
 
       const RELEASES_URL = `https://github.com/${CONFIG.repo}/releases`;
@@ -610,9 +751,48 @@
       } else {
         donateBtn.addEventListener("click", (e) => {
           e.preventDefault();
-          alert("Donate link not set yet. Add CONFIG.donateUrl in landing/index.html.");
+          alert("Donate link not set yet. Add CONFIG.donateUrl in docs/index.html.");
         });
       }
+
+      function mountMedia(el) {
+        const base = el.getAttribute("data-media");
+        if (!base) return;
+        const exts = [".gif", ".webp", ".png", ".jpg", ".jpeg", ".mp4"];
+        let i = 0;
+        const tryNext = () => {
+          if (i >= exts.length) return;
+          const ext = exts[i++];
+          const url = base + ext;
+          if (ext === ".mp4") {
+            const v = document.createElement("video");
+            v.src = url;
+            v.autoplay = true;
+            v.muted = true;
+            v.loop = true;
+            v.playsInline = true;
+            v.onloadeddata = () => {
+              el.innerHTML = "";
+              el.appendChild(v);
+              el.classList.add("has-media");
+            };
+            v.onerror = tryNext;
+            return;
+          }
+          const img = new Image();
+          img.alt = "";
+          img.onload = () => {
+            el.innerHTML = "";
+            el.appendChild(img);
+            el.classList.add("has-media");
+          };
+          img.onerror = tryNext;
+          img.src = url;
+        };
+        tryNext();
+      }
+
+      document.querySelectorAll("[data-media]").forEach(mountMedia);
 
       async function loadRelease() {
         let version = "Latest release";
@@ -639,16 +819,14 @@
               document.getElementById("dl-portable").textContent = "Download Portable";
             }
           }
-        } catch (_) {
-          /* keep fallbacks */
-        }
+        } catch (_) {}
         document.getElementById("footer-version").textContent = version;
         document.getElementById("dl-installer").href = installer;
         document.getElementById("dl-portable").href = portable;
         document.getElementById("hero-actions").innerHTML = `
           <a class="btn btn-primary" href="${installer}">Download for Windows</a>
-          <a class="btn btn-secondary" href="#donate">Donate</a>
-          <p class="hero-note">Folder-based preview · meters · light editing in one window.</p>
+          <a class="btn btn-ghost" href="#donate">Donate</a>
+          <p class="note">Folder preview · meters · light editing in one window.</p>
         `;
       }
 
