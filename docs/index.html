@@ -227,11 +227,20 @@
         aspect-ratio: 16 / 9.2;
       }
 
-      .hero-media.has-media img {
-        object-fit: cover;
-        aspect-ratio: 16 / 9.2;
+      .media.has-media img,
+      .media.has-media .site-shot {
+        display: block;
+        width: 100%;
         height: auto;
-        max-height: none;
+        object-fit: contain;
+        background: #0a0d12;
+      }
+
+      .site-shot:not(.is-loaded) {
+        min-height: 160px;
+        background:
+          linear-gradient(180deg, rgba(106, 168, 232, 0.06), transparent 55%),
+          #121820;
       }
 
       .strip {
@@ -515,7 +524,7 @@
       <div class="wrap">
         <nav class="nav">
           <a class="brand" href="#">
-            <img src="assets/sonora-logo.png" alt="" width="28" height="28" />
+            <img class="site-shot" data-shot="sonora-logo.png" alt="" width="28" height="28" />
             Sonora
           </a>
           <div class="nav-links">
@@ -541,11 +550,16 @@
             <a class="btn btn-ghost" href="#donate">Donate</a>
             <p class="note">Folder preview · meters · light editing in one window.</p>
           </div>
-          <figure class="media hero-media" data-media="assets/hero">
-            <div class="media-ph">
-              <span>Main window</span>
-              <code>assets/hero.gif</code> or <code>hero.png</code>
-            </div>
+          <figure class="media hero-media has-media">
+            <img
+              class="site-shot"
+              data-shot="hero.png"
+              alt="Sonora main window"
+              width="1280"
+              height="720"
+              decoding="async"
+              fetchpriority="high"
+            />
           </figure>
         </header>
 
@@ -586,11 +600,8 @@
                 <li>Cursor readouts for time and frequency</li>
               </ul>
             </div>
-            <figure class="media" data-media="assets/wave">
-              <div class="media-ph">
-                <span>Wave / analyzer</span>
-                <code>assets/wave.gif</code>
-              </div>
+            <figure class="media has-media">
+              <img class="site-shot" data-shot="wave.png" alt="Waveform and analyzers" width="960" height="540" loading="lazy" decoding="async" />
             </figure>
           </article>
 
@@ -607,11 +618,8 @@
                 <li>Refresh loudness for a selection from the file list</li>
               </ul>
             </div>
-            <figure class="media" data-media="assets/meters">
-              <div class="media-ph">
-                <span>Meters / loudness</span>
-                <code>assets/meters.gif</code>
-              </div>
+            <figure class="media has-media">
+              <img class="site-shot" data-shot="meters.png" alt="Meters and loudness" width="960" height="540" loading="lazy" decoding="async" />
             </figure>
           </article>
 
@@ -628,11 +636,8 @@
                 <li>Multilingual UI and customizable hotkeys</li>
               </ul>
             </div>
-            <figure class="media" data-media="assets/folder">
-              <div class="media-ph">
-                <span>Folder / file list</span>
-                <code>assets/folder.gif</code>
-              </div>
+            <figure class="media has-media">
+              <img class="site-shot" data-shot="folder.png" alt="Folder and file list" width="960" height="540" loading="lazy" decoding="async" />
             </figure>
           </article>
 
@@ -649,11 +654,8 @@
                 <li>CSV export of the current list columns</li>
               </ul>
             </div>
-            <figure class="media" data-media="assets/edit">
-              <div class="media-ph">
-                <span>Selection / export</span>
-                <code>assets/edit.gif</code>
-              </div>
+            <figure class="media has-media">
+              <img class="site-shot" data-shot="edit.png" alt="Selection and export" width="960" height="540" loading="lazy" decoding="async" />
             </figure>
           </article>
         </section>
@@ -775,56 +777,34 @@
         });
       }
 
-      function mountMedia(el) {
-        const base = el.getAttribute("data-media");
-        if (!base) return;
-        // Prefer lighter stills before multi‑MB GIFs; then try jsDelivr (often reachable in CN).
-        const exts = [".png", ".webp", ".jpg", ".jpeg", ".gif", ".mp4"];
-        const bases = [
-          base,
-          "https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/" + base.replace(/^\/+/, ""),
-        ];
-        let bi = 0;
-        let ei = 0;
+      // Prefer CDN stills (smaller PNGs) so mainland networks can load shots
+      // even when github.io / large GIFs time out.
+      const SHOT_BASES = [
+        "https://cdn.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/",
+        "https://fastly.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/",
+        "https://gcore.jsdelivr.net/gh/sonora-player/Sonora@main/docs/assets/",
+        "assets/",
+      ];
+
+      function mountShot(img) {
+        const file = img.getAttribute("data-shot");
+        if (!file) return;
+        let i = 0;
         const tryNext = () => {
-          if (ei >= exts.length) {
-            ei = 0;
-            bi += 1;
-          }
-          if (bi >= bases.length) return;
-          const ext = exts[ei++];
-          const url = bases[bi] + ext;
-          if (ext === ".mp4") {
-            const v = document.createElement("video");
-            v.src = url;
-            v.autoplay = true;
-            v.muted = true;
-            v.loop = true;
-            v.playsInline = true;
-            v.onloadeddata = () => {
-              el.innerHTML = "";
-              el.appendChild(v);
-              el.classList.add("has-media");
-            };
-            v.onerror = tryNext;
-            return;
-          }
-          const img = new Image();
-          img.alt = "";
-          img.loading = "lazy";
-          img.decoding = "async";
-          img.onload = () => {
-            el.innerHTML = "";
-            el.appendChild(img);
-            el.classList.add("has-media");
+          if (i >= SHOT_BASES.length) return;
+          const url = SHOT_BASES[i++] + file;
+          const probe = new Image();
+          probe.onload = () => {
+            img.src = url;
+            img.classList.add("is-loaded");
           };
-          img.onerror = tryNext;
-          img.src = url;
+          probe.onerror = tryNext;
+          probe.src = url;
         };
         tryNext();
       }
 
-      document.querySelectorAll("[data-media]").forEach(mountMedia);
+      document.querySelectorAll("img.site-shot[data-shot]").forEach(mountShot);
 
       async function loadRelease() {
         let version = "Latest release";
