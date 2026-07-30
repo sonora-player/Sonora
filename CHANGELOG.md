@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.2
+
+- Taskbar progress bar: green while playing, red while paused (playback position)
+- Help menu reorganized: online manual, Check for Updates, Website, GitHub, About
+- In-app update check with one-click download and install from GitHub Releases
+- About dialog: Website / Docs / GitHub links and Check for Updates
+
 ## 0.9.1
 
 - File list context menu and toolbar hover tooltips localized (zh-Hans / zh-Hant)
