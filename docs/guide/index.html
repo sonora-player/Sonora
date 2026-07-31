@@ -21,7 +21,8 @@
           <a href="#install">安装与启动</a>
           <a href="#ui">界面导览</a>
           <a href="#browse">打开与浏览</a>
-          <a href="#playback">播放</a>
+          <a href="#playback">播放与试听逻辑</a>
+          <a href="#formats">支持的格式</a>
           <a href="#viz">波形与可视化</a>
           <a href="#meters">电平与响度</a>
           <a href="#edit">选区 · Cue · A-B</a>
@@ -34,7 +35,7 @@
         <div class="side-links">
           <a href="../index.html">官网</a>
           <a href="en.html">English</a>
-          <a href="https://github.com/JANFNASY/Sonora/releases">下载</a>
+          <a href="https://github.com/sonora-player/Sonora/releases">下载</a>
         </div>
       </aside>
 
@@ -60,7 +61,7 @@
         <section id="install">
           <h2>安装与启动</h2>
           <h3>安装包</h3>
-          <p>从 <a href="https://github.com/JANFNASY/Sonora/releases">GitHub Releases</a> 下载 <code>Sonora_*_x64-setup.exe</code> 并运行。安装程序可注册常见音频扩展名的文件关联与图标。</p>
+          <p>从 <a href="https://github.com/sonora-player/Sonora/releases">GitHub Releases</a> 下载 <code>Sonora_*_x64-setup.exe</code> 并运行。安装程序可注册常见音频扩展名的文件关联与图标。</p>
           <h3>便携版</h3>
           <p>直接运行 <code>Sonora_*_portable.exe</code>（或 <code>sonora.exe</code>），无需安装。便携版通常不写入文件关联。</p>
           <h3>SmartScreen</h3>
@@ -116,15 +117,19 @@
         </section>
 
         <section id="playback">
-          <h2>播放</h2>
+          <h2>播放与试听逻辑</h2>
+          <p>Sonora 以<strong>文件夹试听</strong>为核心：打开目录即可放音，无需先导入音频库。</p>
           <h3>走带</h3>
           <p>上一首 / 播放暂停 / 停止 / 下一首。空格切换播放暂停；左右方向键微调位置；上下方向键调节音量。</p>
-          <h3>播放模式</h3>
+          <h3>播放模式与试听习惯</h3>
           <ul>
+            <li><strong>SCM / DCM</strong>（状态栏）：单击播放 / 双击播放</li>
             <li><strong>Sequential / Shuffle</strong>：顺序或随机</li>
             <li><strong>Loop One</strong>：单曲循环</li>
             <li><strong>Stop after current</strong>：播完当前文件后停止</li>
-            <li><strong>Keep Position</strong>：切换文件时尽量保持播放位置（便于对比 takes / 混音版本）</li>
+            <li><strong>Keep Position</strong>：切换文件时尽量保持播放位置（便于对比 takes / 混音版本；接近文件末尾时不会把近 EOF 位置带到下一首）</li>
+            <li>双击已关联文件（或拖入文件）会打开其所在文件夹并播放；程序已运行时再打开会聚焦现有窗口（单实例）</li>
+            <li>拖入文件夹只载入列表，不会自动开始播放</li>
           </ul>
           <h3>监听辅助</h3>
           <table>
@@ -137,6 +142,31 @@
               <tr><td>Volume</td><td>主音量；右键打开预设</td></tr>
             </tbody>
           </table>
+        </section>
+
+        <section id="formats">
+          <h2>支持的格式</h2>
+          <p>
+            Sonora 使用 Symphonia 解码。File List 会列出下列扩展名（表格结构参考
+            <a href="https://resonic.at/player">Resonic Player</a> 的格式说明；实际覆盖范围不同）：
+          </p>
+          <table>
+            <thead>
+              <tr><th>格式</th><th>说明</th><th>扩展名</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>WAV</td><td>Wave / Broadcast Wave (BWF)</td><td>.wav .wave .bwf</td></tr>
+              <tr><td>AIFF</td><td>Audio Interchange File Format</td><td>.aif .aiff .aifc</td></tr>
+              <tr><td>FLAC</td><td>Free Lossless Audio Codec</td><td>.flac</td></tr>
+              <tr><td>MP3</td><td>MPEG Audio Layer III</td><td>.mp3</td></tr>
+              <tr><td>OGG</td><td>Ogg Vorbis</td><td>.ogg</td></tr>
+              <tr><td>OPUS</td><td>Opus Interactive Audio Codec</td><td>.opus</td></tr>
+              <tr><td>AAC / M4A</td><td>MPEG-4 AAC（及 MP4/M4A 中的 ALAC）</td><td>.m4a .aac .mp4</td></tr>
+              <tr><td>CAF</td><td>Apple Core Audio Format</td><td>.caf</td></tr>
+              <tr><td>Video (audio)</td><td>视频容器内音轨 — 不是视频播放器</td><td>.mp4 .m4v .mkv .webm .mov</td></tr>
+            </tbody>
+          </table>
+          <p>尚不支持（部分其他试听器具备）：APE、WavPack、TTA、DSD、WMA、MIDI、Tracker 模块、AMR、Musepack 等。</p>
         </section>
 
         <section id="viz">
@@ -161,7 +191,8 @@
           <ul>
             <li><strong>输出表</strong>：单击循环 Peak / RMS / K-14 / VU，右键直接选择</li>
             <li><strong>相位 / 平衡</strong>：立体声关系观察（可在界面模块中开关）</li>
-            <li><strong>文件响度</strong>：Integrated LUFS、LRA、True Peak 等可显示在列表与 Details</li>
+            <li><strong>文件响度</strong>：默认 <strong>跟随滚轮计算（可见行）</strong>；也可改为计算全部。导出 CSV 时会补齐所需响度字段</li>
+            <li>列表上方 <strong>LUFS</strong> 按钮 → 响度安全范围：可分别勾选标记 LUFS-I / LRA（默认关闭）。范围内绿色、超出红色；勾选项超标时文件名标黄</li>
             <li>右键文件 → <strong>Refresh Loudness</strong> 可对选中项重新分析（长视频可能跳过）</li>
           </ul>
         </section>
@@ -169,7 +200,7 @@
         <section id="edit">
           <h2>选区 · Cue · A-B</h2>
           <h3>选区</h3>
-          <p>在波形上拖动创建选区；可循环选区、复制到 A-B、或导出为文件（WAV / float WAV / MP3 / OGG / AAC 等，含增益与淡入淡出选项）。也可拖拽选区句柄到资源管理器或 DAW。</p>
+          <p>在波形上拖动创建选区；可循环选区、复制到 A-B、或导出为文件（WAV / float WAV / MP3 / OGG / AAC 等，含增益与淡入淡出；无需 ffmpeg）。也可拖拽选区句柄到资源管理器或 DAW。</p>
           <h3>Cue</h3>
           <p>工具栏添加 Cue（左键添加，右键打开 Cue 相关选项）。Cue 按文件保存，可在 Cue 间跳转。</p>
           <h3>A-B 循环</h3>
@@ -179,10 +210,10 @@
         <section id="files">
           <h2>文件与批处理</h2>
           <h3>列表操作</h3>
-          <p>剪切 / 复制 / 粘贴、全选、反选、删除（回收站）、重命名（F2）、在资源管理器中显示等。多选时菜单项会显示数量后缀。</p>
+          <p>剪切 / 复制 / 粘贴、全选、反选、删除（回收站）、重命名（F2）、在资源管理器中显示等。多选时菜单项会显示数量后缀。打开文件夹会先立即列出文件，时长在后台补齐。</p>
           <h3>批量工具</h3>
           <ul>
-            <li><strong>Batch Rename</strong>：规则重命名，带预览与撤销</li>
+            <li><strong>Batch Rename</strong>：默认勾选 File List 当前选中项；Preview 提供全选 / 全不选 / 反选；Open folder… / Add File List 可加入其他目录；实时预览与撤销。空文件夹时工具栏按钮也可打开</li>
             <li><strong>Export / Convert</strong>：批量转码</li>
             <li><strong>Export CSV</strong>：导出当前列表字段（含已分析的响度等）</li>
           </ul>
@@ -193,19 +224,18 @@
           <h3>Sound</h3>
           <ul>
             <li>输出设备（WASAPI 等）</li>
-            <li>采样率：Auto 或固定值</li>
+            <li>采样率跟随 Windows 混音器；ASIO 为 Pro 方向占位</li>
             <li>声道：Auto / 1 / 2 / 5.1 / 7.1</li>
             <li>独占模式等选项</li>
-            <li>ASIO 在 Free 中为占位（Pro 能力方向）</li>
           </ul>
-          <h3>Interface / File List / Hotkeys</h3>
+          <h3>Interface / File List / Hotkeys / Drag</h3>
           <ul>
-            <li>主题：Light / Dark / Follow system</li>
-            <li>字号、密度、模块显隐、光标读数</li>
-            <li>列表列与行为相关选项</li>
+            <li>主题：Light / Dark / Follow system；字号、密度、模块显隐、光标读数、任务栏播放指示</li>
+            <li>列表：SCM/DCM、粘性选择、跟随当前项、LUFS 扫描模式、列顺序</li>
             <li>Hotkeys：查看并自定义快捷键，自动检测冲突</li>
+            <li>Drag：拖出片段的文件夹与格式</li>
           </ul>
-          <p>设置保存在本机，不随安装包分发。</p>
+          <p>设置保存在本机。Help → Check for Updates 可从 GitHub Releases 下载安装包。</p>
         </section>
 
         <section id="keys">
@@ -235,16 +265,16 @@
           <h3>为什么安装/运行被拦截？</h3>
           <p>尚未代码签名。按 SmartScreen 提示「更多信息 → 仍要运行」即可。</p>
           <h3>响度列为什么是空的？</h3>
-          <p>响度需分析后才有值。可等待后台分析，或对选中文件使用 Refresh Loudness。过长视频可能被跳过。</p>
+          <p>响度需分析后才有值。默认只算可见行；也可改为计算全部，或对选中文件使用 Refresh Loudness。过长视频可能被跳过。需要绿/红标记时，用列表上方的 LUFS 按钮打开响度安全范围。</p>
           <h3>数据会上传吗？</h3>
           <p>试听与分析在本地进行。官网仅用于下载与说明；捐助跳转到你配置的外部收款页。</p>
           <h3>如何反馈问题？</h3>
-          <p>使用 <a href="https://github.com/JANFNASY/Sonora/issues">GitHub Issues</a>。</p>
+          <p>使用 <a href="https://github.com/sonora-player/Sonora/issues">GitHub Issues</a>。</p>
         </section>
 
         <section id="pro">
           <h2>Sonora Pro</h2>
-          <p>路线图中的进阶能力包括：响度报告 CSV 批量导出、CLI、macOS/Linux、音频库扫库、Loop 自动剪辑、ASIO 等。详见仓库 <a href="https://github.com/JANFNASY/Sonora/blob/main/ROADMAP.md">ROADMAP.md</a>。对外不承诺档期或商务条款。</p>
+          <p>路线图中的进阶能力包括：响度报告 CSV 批量导出、CLI、macOS/Linux、音频库扫库、Loop 自动剪辑、ASIO 等。详见仓库 <a href="https://github.com/sonora-player/Sonora/blob/main/ROADMAP.md">ROADMAP.md</a>。对外不承诺档期或商务条款。</p>
         </section>
 
         <footer class="page-foot">

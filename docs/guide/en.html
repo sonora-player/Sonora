@@ -24,7 +24,8 @@
           <a href="#install">Install</a>
           <a href="#ui">Interface</a>
           <a href="#browse">Browse</a>
-          <a href="#playback">Playback</a>
+          <a href="#playback">Playback &amp; audition</a>
+          <a href="#formats">Supported formats</a>
           <a href="#viz">Visualizations</a>
           <a href="#meters">Meters &amp; loudness</a>
           <a href="#edit">Selection · Cue · A-B</a>
@@ -37,7 +38,7 @@
         <div class="side-links">
           <a href="../index.html">Website</a>
           <a href="index.html">中文</a>
-          <a href="https://github.com/JANFNASY/Sonora/releases">Download</a>
+          <a href="https://github.com/sonora-player/Sonora/releases">Download</a>
         </div>
       </aside>
 
@@ -71,7 +72,7 @@
           <h3>Installer</h3>
           <p>
             Download <code>Sonora_*_x64-setup.exe</code> from
-            <a href="https://github.com/JANFNASY/Sonora/releases">Releases</a>.
+            <a href="https://github.com/sonora-player/Sonora/releases">Releases</a>.
             The installer can register common audio file associations.
           </p>
           <h3>Portable</h3>
@@ -118,18 +119,49 @@
         </section>
 
         <section id="playback">
-          <h2>Playback</h2>
+          <h2>Playback &amp; audition logic</h2>
           <p>
-            Transport: previous / play-pause / stop / next. Space toggles
-            playback. Arrow keys nudge position and volume.
+            Sonora is built for <strong>folder-based audition</strong>: open a
+            directory and hear files in place — no library import required.
           </p>
           <ul>
-            <li>Sequential / Shuffle</li>
-            <li>Loop One</li>
-            <li>Stop after current</li>
-            <li>Keep Position when switching files</li>
+            <li>Transport: previous / play-pause / stop / next. Space toggles playback.</li>
+            <li><strong>SCM</strong> plays on single click; <strong>DCM</strong> needs double-click (status bar toggle).</li>
+            <li>Sequential / Shuffle / Loop One / Stop after current</li>
+            <li><strong>Keep Position</strong> when switching files (for comparing takes / mixes; near EOF it will not carry a near-end position into the next file)</li>
             <li>Dim / Mono / Downmix / Mute / Volume presets (right-click volume)</li>
+            <li>Double-click an associated file (or drop a file) opens its folder and plays; a second launch focuses the existing window (single instance)</li>
+            <li>Drop a folder to load its list without auto-playing</li>
           </ul>
+        </section>
+
+        <section id="formats">
+          <h2>Supported formats</h2>
+          <p>
+            Sonora decodes with Symphonia. The File List shows these extensions
+            (layout inspired by common audition players such as
+            <a href="https://resonic.at/player">Resonic Player</a> — coverage differs):
+          </p>
+          <table>
+            <thead>
+              <tr><th>Format</th><th>Description</th><th>Extensions</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>WAV</td><td>Wave / Broadcast Wave (BWF)</td><td>.wav .wave .bwf</td></tr>
+              <tr><td>AIFF</td><td>Audio Interchange File Format</td><td>.aif .aiff .aifc</td></tr>
+              <tr><td>FLAC</td><td>Free Lossless Audio Codec</td><td>.flac</td></tr>
+              <tr><td>MP3</td><td>MPEG Audio Layer III</td><td>.mp3</td></tr>
+              <tr><td>OGG</td><td>Ogg Vorbis</td><td>.ogg</td></tr>
+              <tr><td>OPUS</td><td>Opus Interactive Audio Codec</td><td>.opus</td></tr>
+              <tr><td>AAC / M4A</td><td>MPEG-4 AAC (ALAC in MP4/M4A when present)</td><td>.m4a .aac .mp4</td></tr>
+              <tr><td>CAF</td><td>Apple Core Audio Format</td><td>.caf</td></tr>
+              <tr><td>Video (audio)</td><td>Audio track inside video containers — not a video player</td><td>.mp4 .m4v .mkv .webm .mov</td></tr>
+            </tbody>
+          </table>
+          <p>
+            Not supported yet (unlike some other audition players): APE, WavPack,
+            TTA, DSD, WMA, MIDI, tracker modules (IT/XM/S3M/MOD), AMR, Musepack.
+          </p>
         </section>
 
         <section id="viz">
@@ -146,8 +178,13 @@
           <ul>
             <li>Output meter cycles Peak / RMS / K-14 / VU</li>
             <li>Phase / balance modules can be shown or hidden</li>
-            <li>File loudness (LUFS / LRA / True Peak) appears after analysis</li>
-            <li>Context menu → Refresh Loudness re-analyzes the selection</li>
+            <li>
+              File loudness (LUFS / LRA / True Peak): default
+              <strong>Analyze Visible Rows</strong> (follows scrolling); optional
+              <strong>Analyze All Files</strong>. CSV export always finishes needed loudness fields.
+            </li>
+            <li>File List <strong>LUFS</strong> button → Loudness safe range: mark LUFS-I and/or LRA (off by default). Green in range, red out; filename yellow when a checked metric fails.</li>
+            <li>Context menu → Refresh Loudness re-analyzes the selection (very long videos may be skipped)</li>
           </ul>
         </section>
 
@@ -155,7 +192,8 @@
           <h2>Selection · Cue · A-B</h2>
           <ul>
             <li>Drag on the waveform to select; loop, copy to A-B, or export</li>
-            <li>Export formats include WAV, float WAV, MP3, OGG, AAC with gain/fades</li>
+            <li>Export formats include WAV, float WAV, MP3, OGG, AAC with gain/fades (no ffmpeg)</li>
+            <li>Drag-out handle renders a real clip into Explorer / DAW</li>
             <li>Add cues from the toolbar; jump between them</li>
             <li>Set A/B at the playhead and enable A-B Loop</li>
           </ul>
@@ -165,7 +203,11 @@
           <h2>Files &amp; batch tools</h2>
           <ul>
             <li>Cut / copy / paste, rename, delete to Recycle Bin, Show in Explorer</li>
-            <li>Batch Rename with preview and undo</li>
+            <li>
+              <strong>Batch Rename</strong>: opens with the File List selection checked;
+              Preview Select All / None / Invert; Open folder… / Add File List for files
+              outside the current folder; live preview and undo. Toolbar works even if the folder is empty.
+            </li>
             <li>Export / Convert for multi-file transcode</li>
             <li>Export CSV for the current list fields</li>
           </ul>
@@ -174,11 +216,13 @@
         <section id="prefs">
           <h2>Preferences (Ctrl+P)</h2>
           <ul>
-            <li><strong>Sound</strong>: device, sample rate, channels, exclusive mode; ASIO reserved for Pro direction</li>
-            <li><strong>Interface</strong>: theme, density, modules, cursor readouts</li>
+            <li><strong>Sound</strong>: device, exclusive WASAPI, channels; sample rate follows the Windows mixer (ASIO reserved for Pro direction)</li>
+            <li><strong>Interface</strong>: theme, density, modules, cursor readouts, taskbar playback indicator</li>
+            <li><strong>File List</strong>: SCM/DCM, sticky selection, follow active item, LUFS scan mode, columns</li>
             <li><strong>Hotkeys</strong>: view and customize accelerators</li>
+            <li><strong>Drag</strong>: clip folder and export format for drag-out</li>
           </ul>
-          <p>Settings stay on the local machine.</p>
+          <p>Settings stay on the local machine. Help → Check for Updates downloads installers from GitHub Releases.</p>
         </section>
 
         <section id="keys">
@@ -205,11 +249,11 @@
           <h3>Blocked by Windows?</h3>
           <p>Unsigned build — use More info → Run anyway.</p>
           <h3>Empty loudness columns?</h3>
-          <p>Wait for analysis or use Refresh Loudness. Very long videos may be skipped.</p>
+          <p>Wait for analysis (visible rows by default) or use Refresh Loudness. Very long videos may be skipped. Enable Loudness safe range from the LUFS button if you want green/red marking.</p>
           <h3>Is audio uploaded?</h3>
           <p>No. Audition and analysis run locally.</p>
           <h3>Feedback</h3>
-          <p><a href="https://github.com/JANFNASY/Sonora/issues">GitHub Issues</a></p>
+          <p><a href="https://github.com/sonora-player/Sonora/issues">GitHub Issues</a></p>
         </section>
 
         <section id="pro">
@@ -217,7 +261,7 @@
           <p>
             Planned directions include batch loudness CSV reports, CLI, macOS/Linux,
             library database, loop auto-editing, ASIO, and more. See
-            <a href="https://github.com/JANFNASY/Sonora/blob/main/ROADMAP.md">ROADMAP.md</a>.
+            <a href="https://github.com/sonora-player/Sonora/blob/main/ROADMAP.md">ROADMAP.md</a>.
             No schedule or commercial terms are promised here.
           </p>
         </section>

@@ -11,11 +11,39 @@ professional audio move quicker from hearing a file to shaping it.
 
 ## What is Sonora?
 
-Sonora is a Windows desktop player built around folder-based audition:
+Sonora is a Windows desktop player built around **folder-based audition**:
 
-- Hear samples and stems quickly in context
-- See level, loudness, and spectrum while you play
-- Do light editing and file work without leaving the player
+- Open a directory and hear samples / stems in place — no mandatory library
+- SCM / DCM click modes, Keep Position, A-B loop, cues, drag-out clips
+- See level, loudness (EBU R128), and spectrum while you play
+- Batch rename, convert, and CSV export without leaving the player
+
+### Recent highlights (0.9.4)
+
+- Batch Rename opens with the File List selection; Open folder… for other directories
+- Loudness safe range (optional LUFS-I / LRA green-red marking)
+- LUFS analyze visible rows (default) vs whole folder; faster folder open
+- In-app update check from GitHub Releases
+
+## Supported formats
+
+Decoded with Symphonia (table style inspired by [Resonic Player](https://resonic.at/player); coverage differs):
+
+| Format | Description | Extensions |
+| --- | --- | --- |
+| WAV | Wave / Broadcast Wave (BWF) | `.wav` `.wave` `.bwf` |
+| AIFF | Audio Interchange File Format | `.aif` `.aiff` `.aifc` |
+| FLAC | Free Lossless Audio Codec | `.flac` |
+| MP3 | MPEG Audio Layer III | `.mp3` |
+| OGG | Ogg Vorbis | `.ogg` |
+| OPUS | Opus Interactive Audio Codec | `.opus` |
+| AAC / M4A | MPEG-4 AAC (ALAC in MP4/M4A when present) | `.m4a` `.aac` `.mp4` |
+| CAF | Apple Core Audio Format | `.caf` |
+| Video (audio) | Audio track inside video containers | `.mp4` `.m4v` `.mkv` `.webm` `.mov` |
+
+Not supported yet: APE, WavPack, TTA, DSD, WMA, MIDI, tracker modules, AMR, Musepack.
+
+Full manual: [Docs](https://sonora-player.github.io/Sonora/guide/) · in-app **Help → User Manual**.
 
 ## Download
 
