@@ -61,7 +61,7 @@
         <section id="install">
           <h2>安装与启动</h2>
           <h3>安装包</h3>
-          <p>从 <a href="https://github.com/sonora-player/Sonora/releases">GitHub Releases</a> 下载 <code>Sonora_*_x64-setup.exe</code> 并运行。安装程序可注册常见音频扩展名的文件关联与图标。</p>
+          <p>从 <a href="https://github.com/sonora-player/Sonora/releases">GitHub Releases</a> 下载 <code>Sonora_*_x64-setup.exe</code> 并运行。安装程序默认以<strong>所有用户</strong>方式安装到 <code>C:\Program Files\Sonora</code>，需要管理员权限；并可注册常见音频扩展名的文件关联与图标。</p>
           <h3>便携版</h3>
           <p>直接运行 <code>Sonora_*_portable.exe</code>（或 <code>sonora.exe</code>），无需安装。便携版通常不写入文件关联。</p>
           <h3>SmartScreen</h3>
@@ -147,8 +147,7 @@
         <section id="formats">
           <h2>支持的格式</h2>
           <p>
-            Sonora 使用 Symphonia 解码。File List 会列出下列扩展名（表格结构参考
-            <a href="https://resonic.at/player">Resonic Player</a> 的格式说明；实际覆盖范围不同）：
+            Sonora 使用 Symphonia 解码。File List 会列出下列扩展名：
           </p>
           <table>
             <thead>
@@ -166,7 +165,7 @@
               <tr><td>Video (audio)</td><td>视频容器内音轨 — 不是视频播放器</td><td>.mp4 .m4v .mkv .webm .mov</td></tr>
             </tbody>
           </table>
-          <p>尚不支持（部分其他试听器具备）：APE、WavPack、TTA、DSD、WMA、MIDI、Tracker 模块、AMR、Musepack 等。</p>
+          <p>尚不支持：APE、WavPack、TTA、DSD、WMA、MIDI、Tracker 模块、AMR、Musepack 等。</p>
         </section>
 
         <section id="viz">

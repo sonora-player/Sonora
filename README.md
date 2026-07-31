@@ -27,7 +27,7 @@ Sonora is a Windows desktop player built around **folder-based audition**:
 
 ## Supported formats
 
-Decoded with Symphonia (table style inspired by [Resonic Player](https://resonic.at/player); coverage differs):
+Decoded with Symphonia:
 
 | Format | Description | Extensions |
 | --- | --- | --- |
@@ -55,6 +55,7 @@ Visit **[Releases](https://github.com/sonora-player/Sonora/releases)** for the l
 | `Sonora-*-portable.exe` | Run without installing |
 
 Windows may show SmartScreen for unsigned builds: **More info → Run anyway**.
+A proper Authenticode code-signing certificate (OV/EV) is required to remove that warning; configure it in Tauri via `bundle.windows.certificateThumbprint` once you have a cert.
 
 ## Support Sonora
 
