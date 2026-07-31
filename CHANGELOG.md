@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.9.4
+
+- **Batch Rename**
+  - Opens with the current File List selection checked (not the whole folder)
+  - Preview: Select All / Select None / Invert
+  - Open folder? / Add File List ? rename files outside the current folder
+  - Toolbar Batch Rename stays enabled even when the folder is empty
+- **Loudness safe range** (File List ? LUFS button)
+  - Separate checkboxes for LUFS-I and LRA marking (default: off)
+  - In range = green, out of range = red; filename yellow when a checked metric fails
+  - Range separator `~`; negative values typeable; LRA minimum clamped to 0
+  - Fixed LUFS column accent color covering green/red highlights
+- **File List performance**
+  - LUFS: Analyze Visible Rows (default) vs Analyze All Files
+  - Faster folder open (durations filled in the background)
+  - Fix scroll jump while LUFS visible-scan updates cells (scroll anchoring + observer)
+- **Updates**
+  - Quiet startup check; status-bar Update chip + download progress
+  - Update check moved to Rust (`ureq`) to avoid WebView GitHub 403
+
 ## 0.9.3
 
 - Taskbar playback indicator (toggle in Preferences ? Interface): title-bar frosted icon; Win11 combined taskbar uses native progress fill on a single button (no overlay badge)
