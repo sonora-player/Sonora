@@ -1,14 +1,7 @@
 # Changelog
 
-## 0.9.6
-
-- **Updates**: in-app updater launches the installer with UAC elevation (fixes os error 740 after Program Files install)
-
 ## 0.9.5
 
-- **Installer**
-  - Default install: all users ? `C:\Program Files\Sonora` (admin required)
-  - Upgrade from older AppData / current-user installs auto-removes the leftover copy (avoids two Sonora entries)
 - **File List**
   - Subtle column dividers in the header for easier column resize
 - **Safety**

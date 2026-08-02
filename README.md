@@ -18,10 +18,10 @@ Sonora is a Windows desktop player built around **folder-based audition**:
 - See level, loudness (EBU R128), and spectrum while you play
 - Batch rename, convert, and CSV export without leaving the player
 
-### Recent highlights (0.9.6)
+### Recent highlights (0.9.5)
 
-- In-app updater requests Administrator (UAC) so Program Files installs can update
-- 0.9.5: all-users Program Files install + AppData migrate; File List header dividers; safer delete/rename
+- File List header column dividers for easier resize
+- Delete confirmation (local / Recycle Bin); rename never overwrites an existing name
 
 ## Supported formats
 
