@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.9.5
+
+- **Installer**
+  - Default install: all users ? `C:\Program Files\Sonora` (admin required)
+  - Upgrade from older AppData / current-user installs auto-removes the leftover copy (avoids two Sonora entries)
+- **File List**
+  - Subtle column dividers in the header for easier column resize
+- **Safety**
+  - Delete confirmation warns that files are removed from this PC (Recycle Bin)
+  - Rename refuses to overwrite an existing filename (inline + batch + backend)
+
 ## 0.9.4
 
 - **Batch Rename**
