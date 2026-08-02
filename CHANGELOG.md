@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.9.6
+
+- **Updates**: in-app updater launches the installer with UAC elevation (fixes os error 740 after Program Files install)
+
 ## 0.9.5
 
 - **Installer**
