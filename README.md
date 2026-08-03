@@ -18,10 +18,10 @@ Sonora is a Windows desktop player built around **folder-based audition**:
 - See level, loudness (EBU R128), and spectrum while you play
 - Batch rename, convert, and CSV export without leaving the player
 
-### Recent highlights (0.9.5)
+### Recent highlights (0.9.6)
 
-- File List header column dividers for easier resize
-- Delete confirmation (local / Recycle Bin); rename never overwrites an existing name
+- **NCM** support: open NetEase Cloud Music `.ncm` files (decrypts in-memory to MP3/FLAC/M4A/…)
+- 0.9.5: File List header column dividers; safer delete/rename
 
 ## Supported formats
 
@@ -37,6 +37,7 @@ Decoded with Symphonia:
 | OPUS | Opus Interactive Audio Codec | `.opus` |
 | AAC / M4A | MPEG-4 AAC (ALAC in MP4/M4A when present) | `.m4a` `.aac` `.mp4` |
 | CAF | Apple Core Audio Format | `.caf` |
+| NCM | NetEase Cloud Music encrypted container (decrypts to MP3/FLAC/M4A/…) | `.ncm` |
 | Video (audio) | Audio track inside video containers | `.mp4` `.m4v` `.mkv` `.webm` `.mov` |
 
 Not supported yet: APE, WavPack, TTA, DSD, WMA, MIDI, tracker modules, AMR, Musepack.

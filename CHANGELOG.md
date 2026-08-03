@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.6
+
+- **NCM**: read / play NetEase Cloud Music `.ncm` files (in-memory decrypt ? original MP3/FLAC/M4A/? via Symphonia)
+- File association + icon for `.ncm`
+- List duration uses NCM embedded metadata when present (no full decrypt)
+
 ## 0.9.5
 
 - **File List**
