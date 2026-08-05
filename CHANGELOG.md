@@ -3,9 +3,12 @@
 ## 0.9.7
 
 - **Drag-out clips**: selection no longer writes clip files; clips are generated only when you click Drag
-- **Preferences / Drag**: customizable clip filename pattern (default `{name}_{start_ms}-{end_ms}ms`)
+- **Preferences / Drag**: Nuendo-style attribute-button naming (chips + preview); default `{name}_{start_ms}-{end_ms}ms`
+- **Export / Convert**: same naming UI; same folder + same format without overwrite appends `_export`
 - **Export / Convert**: reuses the playing-file decode cache so conversion of the current track matches drag speed
 - **Explorer**: installer adds **Open with Sonora** on files and folders (unsupported formats open the app empty)
+- **Loop one**: seamless wrap in the audio callback (no seek/resume click at the end)
+- **Startup**: no crash when the system has no usable audio output device
 
 ## 0.9.6
 

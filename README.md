@@ -20,8 +20,8 @@ Sonora is a Windows desktop player built around **folder-based audition**:
 
 ### Recent highlights (0.9.7)
 
-- Drag-out clips only when you drag (no pre-write on selection); customizable clip name pattern in Preferences
-- Faster Export / Convert for the currently playing file; Explorer **Open with Sonora**
+- Seamless loop-one; button-based clip / export naming; `_export` when exporting over the source
+- Faster Export / Convert for the playing file; Explorer **Open with Sonora**; no crash without audio device
 - 0.9.6: **NCM** support (NetEase Cloud Music `.ncm`)
 
 ## Supported formats
