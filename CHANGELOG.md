@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.7
+
+- **Drag-out clips**: selection no longer writes clip files; clips are generated only when you click Drag
+- **Preferences / Drag**: customizable clip filename pattern (default `{name}_{start_ms}-{end_ms}ms`)
+- **Export / Convert**: reuses the playing-file decode cache so conversion of the current track matches drag speed
+- **Explorer**: installer adds **Open with Sonora** on files and folders (unsupported formats open the app empty)
+
 ## 0.9.6
 
 - **NCM**: read / play NetEase Cloud Music `.ncm` files (in-memory decrypt ? original MP3/FLAC/M4A/? via Symphonia)
