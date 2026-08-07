@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.8
+
+- **Secondary waveform**: optional split view (main on top, secondary below); off by default
+- Secondary mode switch (spectrogram / waterfall / linear / ?) at bottom-right; fades in on hover
+- Shared playhead and selection between main and secondary views
+- **File List Copy / Cut**: writes Windows CF_HDROP so Explorer Paste works
+
 ## 0.9.7
 
 - **Drag-out clips**: selection no longer writes clip files; clips are generated only when you click Drag

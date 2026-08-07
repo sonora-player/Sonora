@@ -18,11 +18,11 @@ Sonora is a Windows desktop player built around **folder-based audition**:
 - See level, loudness (EBU R128), and spectrum while you play
 - Batch rename, convert, and CSV export without leaving the player
 
-### Recent highlights (0.9.7)
+### Recent highlights (0.9.8)
 
-- Seamless loop-one; button-based clip / export naming; `_export` when exporting over the source
-- Faster Export / Convert for the playing file; Explorer **Open with Sonora**; no crash without audio device
-- 0.9.6: **NCM** support (NetEase Cloud Music `.ncm`)
+- Optional secondary waveform (split view) with synced playhead/selection
+- File List Copy/Cut pastes correctly into Windows Explorer
+- 0.9.7: seamless loop-one; button-based naming; Open with Sonora; safer no-audio startup
 
 ## Supported formats
 
