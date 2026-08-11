@@ -18,11 +18,11 @@ Sonora is a Windows desktop player built around **folder-based audition**:
 - See level, loudness (EBU R128), and spectrum while you play
 - Batch rename, convert, and CSV export without leaving the player
 
-### Recent highlights (0.9.8)
+### Recent highlights (1.0.0)
 
-- Optional secondary waveform (split view) with synced playhead/selection
-- File List Copy/Cut pastes correctly into Windows Explorer
-- 0.9.7: seamless loop-one; button-based naming; Open with Sonora; safer no-audio startup
+**Performance** — smoother large folders; leaner waveform/meters; reliable long-file streaming without freezes or skipped audio.
+
+**Stability & security** — safer copy/move/delete; clearer DirectSound errors; in-app–only update checks; file ops stay inside folders you opened; more reliable network-path drag.
 
 ## Supported formats
 

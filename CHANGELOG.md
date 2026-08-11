@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.0.0
+
+### Performance
+
+- Smoother browsing and playback in large folders
+- Waveform and meters use less CPU while playing, with fewer UI stalls
+- Very long tracks open and play without freezing or exhausting memory
+- More reliable streaming: underruns no longer skip audio; unknown duration no longer ends playback immediately
+- Long sessions use fewer resources, with fewer stutters and glitches
+- More accurate waveform peaks; clearer errors for damaged files
+
+### Stability & security
+
+- Copy, move, delete, and drive listing are less likely to freeze the UI
+- DirectSound failures show a clear message instead of silent output
+- Safer auto-updates: installer URL and checks are decided in-app; missing signature or digest refuses install
+- Rename, delete, and copy stay inside folders you have opened
+- Dragging from network paths to local is less likely to crash
+
 ## 0.9.9
 
 - Drag under the waveform stage to resize height (with min/max limits)
