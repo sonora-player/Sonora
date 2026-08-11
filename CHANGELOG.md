@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.9.9
+
+- Drag under the waveform stage to resize height (with min/max limits)
+- Main / secondary waveform split ratio is now draggable
+- Secondary wave mode button idle opacity raised to 38%
+- Batch Rename: Capitalize Words
+- Loudness / Peak / Correlation meters adapt when the stage is short (less stacked / clipped text)
+- Spectrogram time/frequency resolution modestly improved; less mosaic when zoomed
+- What's New after updates; status-bar Update requires confirmation before download/install
+- Play mode (Sequential / Shuffle / Loop One / Stop After Current) and Keep Position persist across restarts
+
 ## 0.9.8
 
 - **Secondary waveform**: optional split view (main on top, secondary below); off by default
