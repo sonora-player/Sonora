@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.2
+
+### Loudness
+
+- Peak column (sample peak, dBFS) is back and shown by default — measured with every loudness analysis
+- New `{peak}` token for Batch Rename
+
 ## 1.0.1
 
 ### Loudness
