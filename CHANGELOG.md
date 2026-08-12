@@ -1,16 +1,11 @@
 # Changelog
 
-## 1.0.2
-
-### Loudness
-
-- Peak column (sample peak, dBFS) is back and shown by default — measured with every loudness analysis
-- New `{peak}` token for Batch Rename
-
 ## 1.0.1
 
 ### Loudness
 
+- Peak column (sample peak, dBFS) is shown by default — measured with every loudness analysis
+- New `{peak}` token for Batch Rename
 - True Peak (dBTP) uses BS.1770 4× oversampling and is analysed only when that column is shown
 - Manual clarifies LUFS-I vs DAW dual-mono / partial-gate differences
 - Added [REAPER loudness feedback notes](docs/REAPER-loudness-feedback.md) for reporting offline LUFS-I discrepancies
