@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.1
+
+### Loudness
+
+- True Peak (dBTP) uses BS.1770 4× oversampling and is analysed only when that column is shown
+- Manual clarifies LUFS-I vs DAW dual-mono / partial-gate differences
+- Added [REAPER loudness feedback notes](docs/REAPER-loudness-feedback.md) for reporting offline LUFS-I discrepancies
+
+### Interface
+
+- Dark theme: native title bar and scrollbars follow the app palette
+
 ## 1.0.0
 
 ### Performance
