@@ -18,7 +18,7 @@
           <img src="../assets/sonora-logo.png" alt="" width="22" height="22" />
           Sonora Docs
         </a>
-        <p class="side-meta">Free · Windows · v0.9.6</p>
+        <p class="side-meta">Free · Windows · v1.0.1</p>
         <nav class="toc">
           <a href="#intro">Overview</a>
           <a href="#install">Install</a>
@@ -181,13 +181,26 @@
             <li>Output meter cycles Peak / RMS / K-14 / VU</li>
             <li>Phase / balance modules can be shown or hidden</li>
             <li>
-              File loudness (LUFS / LRA / True Peak): default
+              File loudness (LUFS-I / LRA / Peak / True Peak): default
               <strong>Analyze Visible Rows</strong> (follows scrolling); optional
               <strong>Analyze All Files</strong>. CSV export always finishes needed loudness fields.
             </li>
+            <li><strong>Peak</strong> (sample peak, dBFS) is shown by default and measured with every loudness analysis</li>
+            <li><strong>True Peak</strong> (dBTP) uses BS.1770 4× oversampling and is analysed only when that column is shown (or exported in CSV)</li>
             <li>File List <strong>LUFS</strong> button → Loudness safe range: mark LUFS-I and/or LRA (off by default). Green in range, red out; filename yellow when a checked metric fails.</li>
             <li>Context menu → Refresh Loudness re-analyzes the selection (very long videos may be skipped)</li>
           </ul>
+          <h3>Why does LUFS-I differ from a DAW?</h3>
+          <p>
+            Loudness follows EBU R128 / BS.1770 strictly, so LUFS-I matches ffmpeg’s
+            <code>ebur128</code> (libebur128) file for file. A DAW (e.g. REAPER) may
+            report a higher LUFS-I for the same file for two common reasons:
+          </p>
+          <ul>
+            <li><strong>Dual-mono</strong>: Sonora measures mono files as one channel (weight 1.0), as BS.1770 defines. DAWs often route the same mono signal to both L and R on a stereo bus, doubling K-weighted power and raising the reading by exactly <strong>3.01 LU</strong>.</li>
+            <li><strong>Partial gating windows</strong>: Sonora counts only complete 400&nbsp;ms gating blocks. Some DAW meters also emit zero-padded partial blocks at 100/200/300&nbsp;ms. For one-shots whose transient sits at the first sample, those partial blocks each contain the whole transient, pass the gate, and pull integrated loudness up by about <strong>1–2 LU</strong>.</li>
+          </ul>
+          <p>Longer notes: <a href="https://github.com/sonora-player/Sonora/blob/main/docs/REAPER-loudness-feedback.md">docs/REAPER-loudness-feedback.md</a>.</p>
         </section>
 
         <section id="edit">
@@ -252,7 +265,9 @@
           <h3>Blocked by Windows?</h3>
           <p>Unsigned build — use More info → Run anyway.</p>
           <h3>Empty loudness columns?</h3>
-          <p>Wait for analysis (visible rows by default) or use Refresh Loudness. Very long videos may be skipped. Enable Loudness safe range from the LUFS button if you want green/red marking.</p>
+          <p>Wait for analysis (visible rows by default) or use Refresh Loudness. Very long videos may be skipped. True Peak is analysed only when that column is shown (or exported in CSV). Enable Loudness safe range from the LUFS button if you want green/red marking.</p>
+          <h3>LUFS-I differs from my DAW?</h3>
+          <p>See <a href="#meters">Why does LUFS-I differ from a DAW?</a> under Meters &amp; loudness. Typical offsets: dual-mono ≈ +3.01 LU, or partial gating windows ≈ +1–2 LU on short one-shots.</p>
           <h3>Is audio uploaded?</h3>
           <p>No. Audition and analysis run locally.</p>
           <h3>Feedback</h3>
