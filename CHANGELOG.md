@@ -1,5 +1,16 @@
 # Changelog
 
+## 1.0.2
+
+### Playback
+
+- Switching tracks is now seamless: the current track keeps playing while the next one is decoded and prepared, so Keep Position A/B comparison has no gap
+- A failed load no longer stops the track that is already playing
+
+### Updates
+
+- Update install no longer fails when the GitHub API is rate limited — the installer digest is read from a `.sha256` file published next to each asset
+
 ## 1.0.1
 
 ### Loudness
