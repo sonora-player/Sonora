@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.3
+
+### Stability
+
+- Pause, Resume, and Stop during a track switch now stick — the last action you took wins
+- If a new file fails to load, the UI stays on the file that is still playing
+- Keep Position no longer goes silent when switching to a very long file
+- Scrubbing during a slow load is kept after the new file takes over
+
 ## 1.0.2
 
 ### Playback
