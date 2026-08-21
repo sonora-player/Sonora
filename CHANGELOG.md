@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.4
+
+### Browser
+
+- Refresh now re-reads the Browser tree, so newly created folders show up
+- Locate jumps to the current file’s folder in the tree and scrolls it into view
+
 ## 1.0.3
 
 ### Stability
