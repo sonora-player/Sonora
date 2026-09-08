@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.5
+
+### File List
+
+- New Refresh button in the File List header picks up files added to the current folder
+- Show in Explorer no longer opens Documents when the file name contains a space
+- Locate and Show in Explorer now act on the selected row first, falling back to the playing file
+
 ## 1.0.4
 
 ### Browser
