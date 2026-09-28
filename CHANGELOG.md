@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.0.6
+
+### Selection fades
+
+- Drag the square handles at the head and tail of a selection to set fade in / fade out; the fade is auditioned live and nothing is written until you export or drag the clip out
+- Five fade curves (Linear, Equal power, Exponential, Logarithmic, S-curve) selectable in the selection bar and the Export Selection dialog
+- Exported and dragged-out clips bake the same fades and curve
+
+### Waveform zoom
+
+- Ctrl + mouse wheel zooms the waveform around the cursor; plain wheel pans when zoomed in
+- Hotkeys: Ctrl+= / Ctrl+- zoom, Ctrl+0 fit, Z zoom to selection (all remappable in Preferences → Hotkeys)
+- Zoomed views re-read peaks from the file for full detail
+
+### Clip naming
+
+- Export Selection now has its own filename scheme (or can follow the drag-out scheme); the suggested filename follows it
+- Naming chips can be reordered by dragging; free-text chips stay separate instead of merging into neighbours
+- New Separator option ( `_` by default) is inserted automatically between adjacent attributes
+- Time attributes now include their unit (1500ms, 1.500s); the default drag scheme is `name_1500ms-3200ms`
+- Dragged-out clips no longer get a timestamp suffix — duplicates get " (2)", " (3)" …
+
+### Meters
+
+- Vectorscope axis labels (M / S / L / R) are placed clear of the axes and no longer disappear in narrow panels
+
 ## 1.0.5
 
 ### File List
