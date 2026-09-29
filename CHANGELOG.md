@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.7
+
+### Volume
+
+- The volume slider can show dB attenuation instead of percent (right-click the slider, or Preferences → Sound → Volume)
+- Presets, the drag readout and the ↑ / ↓ keys follow the chosen mode (5 % or 1 dB per step)
+
+### File List
+
+- After starting playback, scrolling away no longer snaps the list back to the playing row when loudness or duration values arrive
+- While LUFS is still being computed under a loudness sort, the list no longer jumps away from the top or chases a row that was just re-sorted far away
+- Locate (Ctrl+L) now also scrolls the File List to the file, centred in the viewport, in addition to revealing its folder in the Browser
+
 ## 1.0.6
 
 ### Selection fades
