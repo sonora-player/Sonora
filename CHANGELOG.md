@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.8
+
+### Multichannel output
+
+- Mono files on a 6- or 8-channel interface play from L / R only, instead of every output
+- Downmix folds 5.1 / 7.1 to L / R even when the device stays multichannel, and leaves LFE out of the fold
+- Mono listen folds every channel the same way (centre and surrounds included), and stays on L / R
+- Mono to center (toolbar C, or Preferences → Sound) sends mono files and Mono listen to the center speaker. The control is available only when the output has more than 2 channels
+
 ## 1.0.7
 
 ### Volume
