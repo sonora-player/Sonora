@@ -490,9 +490,17 @@
         background: #070a0e;
       }
 
-      .platform {
+      .platforms {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
         margin-top: 22px;
+      }
+
+      .platform {
+        flex: 1 1 280px;
         max-width: 480px;
+        margin-top: 0;
         padding: 20px 22px;
         border: 1px solid rgba(106, 168, 232, 0.35);
         border-radius: 14px;
@@ -584,14 +592,14 @@
         </nav>
 
         <header class="hero">
-          <p class="eyebrow">Windows · Free to use</p>
+          <p class="eyebrow">Windows · macOS · Free to use</p>
           <h1>Fast audition and editing with loudness metering.</h1>
           <p class="hero-lead">
             Built to help audio editors, sound designers, and anyone who works
             with professional audio move quicker from hearing a file to shaping it.
           </p>
           <div class="actions" id="hero-actions">
-            <a class="btn btn-primary" href="#download">Download for Windows</a>
+            <a class="btn btn-primary" href="#download">Download</a>
             <a class="btn btn-ghost" href="#support">Support Sonora</a>
             <p class="note">Folder preview · meters · light editing in one window.</p>
           </div>
@@ -783,7 +791,7 @@
           <ul class="pro-list">
             <li>Batch loudness report CSV</li>
             <li>CLI for unattended analysis</li>
-            <li>macOS and Linux</li>
+            <li>Linux</li>
             <li>Audio library database</li>
             <li>Loop auto-editing with fades</li>
             <li>ASIO, pitch, recording, batch targets</li>
@@ -847,17 +855,30 @@
       <section class="download" id="download">
         <div class="wrap">
           <h2>Download Sonora</h2>
-          <div class="platform">
-            <div class="platform-name">Windows</div>
-            <div class="platform-tag">10 / 11 · x64</div>
-            <div class="actions" style="margin-top: 16px">
-              <a class="btn btn-primary" id="dl-installer" href="#">View Releases</a>
-              <a class="btn btn-ghost" id="dl-portable" href="#">Portable</a>
+          <div class="platforms">
+            <div class="platform">
+              <div class="platform-name">Windows</div>
+              <div class="platform-tag">10 / 11 · x64</div>
+              <div class="actions" style="margin-top: 16px">
+                <a class="btn btn-primary" id="dl-installer" href="https://github.com/sonora-player/Sonora/releases/latest">Download Installer</a>
+                <a class="btn btn-ghost" id="dl-portable" href="https://github.com/sonora-player/Sonora/releases/latest">Portable</a>
+              </div>
+              <p class="warn">
+                If SmartScreen appears: <strong>More info</strong> →
+                <strong>Run anyway</strong>. Builds are unsigned for now.
+              </p>
             </div>
-            <p class="warn">
-              If SmartScreen appears: <strong>More info</strong> →
-              <strong>Run anyway</strong>. Builds are unsigned for now.
-            </p>
+            <div class="platform">
+              <div class="platform-name">macOS</div>
+              <div class="platform-tag">Universal · Apple silicon and Intel</div>
+              <div class="actions" style="margin-top: 16px">
+                <a class="btn btn-primary" id="dl-mac" href="https://github.com/sonora-player/Sonora/releases/latest">Download for Mac</a>
+              </div>
+              <p class="warn">
+                Not notarized yet. If Gatekeeper blocks the app, right-click
+                <strong>Sonora</strong> in Finder and choose <strong>Open</strong>.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -890,6 +911,7 @@
       document.getElementById("roadmap-link").href = ROADMAP_URL;
       document.getElementById("dl-installer").href = RELEASES_URL;
       document.getElementById("dl-portable").href = RELEASES_URL;
+      document.getElementById("dl-mac").href = RELEASES_URL;
 
       const supportOpen = document.getElementById("support-open");
       const supportPanel = document.getElementById("support-panel");
@@ -945,6 +967,7 @@
         let version = "Latest release";
         let installer = RELEASES_URL;
         let portable = RELEASES_URL;
+        let mac = RELEASES_URL;
         try {
           const res = await fetch(`https://api.github.com/repos/${CONFIG.repo}/releases/latest`);
           if (res.ok) {
@@ -955,8 +978,9 @@
               (a) => /setup\.exe$/i.test(a.name) || (/Sonora_.*\.exe$/i.test(a.name) && !/portable/i.test(a.name)),
             );
             const port = assets.find(
-              (a) => /portable/i.test(a.name) || /^sonora\.exe$/i.test(a.name),
+              (a) => /portable/i.test(a.name) && /\.exe$/i.test(a.name),
             );
+            const dmg = assets.find((a) => /\.dmg$/i.test(a.name));
             if (setup) {
               installer = setup.browser_download_url;
               document.getElementById("dl-installer").textContent = "Download Installer";
@@ -965,13 +989,19 @@
               portable = port.browser_download_url;
               document.getElementById("dl-portable").textContent = "Download Portable";
             }
+            if (dmg) {
+              mac = dmg.browser_download_url;
+              document.getElementById("dl-mac").textContent = "Download for Mac";
+            }
           }
         } catch (_) {}
         document.getElementById("footer-version").textContent = version;
         document.getElementById("dl-installer").href = installer;
         document.getElementById("dl-portable").href = portable;
+        document.getElementById("dl-mac").href = mac;
         document.getElementById("hero-actions").innerHTML = `
           <a class="btn btn-primary" href="${installer}">Download for Windows</a>
+          <a class="btn btn-primary" href="${mac}">Download for Mac</a>
           <a class="btn btn-ghost" href="#support">Support Sonora</a>
           <p class="note">Folder preview · meters · light editing in one window.</p>
         `;

@@ -11,7 +11,7 @@ professional audio move quicker from hearing a file to shaping it.
 
 ## What is Sonora?
 
-Sonora is a Windows desktop player built around **folder-based audition**:
+Sonora is a Windows and macOS desktop player built around **folder-based audition**:
 
 - Open a directory and hear samples / stems in place — no mandatory library
 - SCM / DCM click modes, Keep Position, A-B loop, cues, drag-out clips
@@ -51,11 +51,13 @@ Visit **[Releases](https://github.com/sonora-player/Sonora/releases)** for the l
 
 | Package | Notes |
 | --- | --- |
-| `Sonora_*_x64-setup.exe` | NSIS installer (file associations) |
-| `Sonora-*-portable.exe` | Run without installing |
+| [`Sonora_1.0.9_x64-setup.exe`](https://github.com/sonora-player/Sonora/releases/download/v1.0.9/Sonora_1.0.9_x64-setup.exe) | Windows installer (file associations) |
+| [`Sonora_1.0.9_portable.exe`](https://github.com/sonora-player/Sonora/releases/download/v1.0.9/Sonora_1.0.9_portable.exe) | Windows portable build. Run without installing |
+| [`Sonora_1.0.9_universal.dmg`](https://github.com/sonora-player/Sonora/releases/download/v1.0.9/Sonora_1.0.9_universal.dmg) | macOS Universal (Apple silicon and Intel). Open the disk image and drag Sonora to Applications |
 
-Windows may show SmartScreen for unsigned builds: **More info → Run anyway**.
-A proper Authenticode code-signing certificate (OV/EV) is required to remove that warning; configure it in Tauri via `bundle.windows.certificateThumbprint` once you have a cert.
+Windows builds are not code-signed yet. If SmartScreen appears, choose **More info → Run anyway**.
+
+macOS builds are not notarized yet. If Gatekeeper blocks the app, right-click Sonora in Finder and choose **Open**.
 
 ## Support Sonora
 
@@ -78,8 +80,7 @@ Website: [Support Sonora](https://sonora-player.github.io/Sonora/#support)
 
 ## Sonora Pro
 
-Planned capabilities (no schedule): batch loudness CSV reports, CLI, macOS /
-Linux, library database, loop auto-editing, ASIO, and more — see [ROADMAP.md](ROADMAP.md).
+macOS Universal already ships with Sonora Free. Planned capabilities (no schedule): batch loudness CSV reports, CLI, Linux, library database, loop auto-editing, ASIO, and more — see [ROADMAP.md](ROADMAP.md).
 
 ## Feedback
 

@@ -15,6 +15,7 @@ describe commercial terms.
 - File management, batch rename, convert / export, list CSV
 - Multilingual UI and customizable hotkeys
 - Voluntary support helps ongoing Free maintenance (not a purchase)
+- Windows x64 and macOS Universal builds
 
 ## Sonora Pro (planned capabilities)
 
@@ -22,7 +23,7 @@ Additional directions beyond the Free player experience:
 
 - Batch loudness analysis report CSV export
 - CLI for scripting and unattended analysis
-- macOS and Linux support
+- Linux support
 - Audio library database (scan / index for fast find & audition)
 - Loop auto-editing (loop-point matching with fade in / fade out)
 - ASIO output
