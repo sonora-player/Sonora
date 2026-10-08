@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.9
+
+### Mac
+
+- Sonora for Mac is now available (Universal: Apple silicon and Intel). The disk image is on the same GitHub Release as the Windows installer
+
+### Playback order
+
+- Next, previous, and auto-advance follow the File List sort (loudness, modified time, size, duration, and the rest), not the original filename order
+
 ## 1.0.8
 
 ### Multichannel output
