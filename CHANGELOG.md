@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.10
+
+### Selections when switching tracks
+
+- Switching to another track (Next, Previous, auto-advance, or opening a file) now clears the waveform selection and its selection loop, so the new file starts clean
+- Export Selection and dragging a clip out always use the file and range that were selected, even if playback moves to another track while the dialog or folder picker is open
+- A selection drag in progress is dropped when the track changes, so it cannot be applied to the new file
+
 ## 1.0.9
 
 ### Mac
